@@ -1,17 +1,64 @@
-<ion-header no-border>
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      PERFIL DE USUARIO
-     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="logout()"
-                  color="danger">
-        <ion-icon slot="icon-only" name="exit"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+     MENU
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-<app-explore-container name="Tab 3 page"></app-explore-container>
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="person"></ion-icon>
+          <h2>Profile</h2>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="people"></ion-icon>
+          <h2>Chat</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="settings"></ion-icon>
+          <h2>Settings</h2>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary">
+          <ion-icon name="accessibility-outline"></ion-icon>
+          <h2>Entrenos</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-card text-center padding color="primary" routerLink="/main/tabs/tab3/reservar" routerDirection="forward">
+          <ion-icon name="add"></ion-icon>
+          <h2>Reservar Plaza</h2>
+        </ion-card>
+      </ion-col>
+      <ion-col col-6>
+          <ion-card text-center padding color="primary">
+            <ion-icon name="calendar"></ion-icon>
+            <h2>Horarios</h2>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card class = "ion-text-center" padding color="primary">
+          <ion-icon name="heart-half-outline"></ion-icon>
+          <h2>Gymder de las tentaciones</h2>
+          <h2>Premium</h2>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
