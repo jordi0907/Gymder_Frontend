@@ -1,0 +1,17 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      PERFIL DE USUARIO
+     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logout()"
+                  color="danger">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<app-explore-container name="Tab 3 page"></app-explore-container>
+</ion-content>
