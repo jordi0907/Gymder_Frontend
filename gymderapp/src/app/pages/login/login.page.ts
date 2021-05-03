@@ -52,9 +52,18 @@ export class LoginPage implements OnInit {
   };
 
   loginUser = {
-    email: 'test1@test.com',
-    password: '123456',
+    email: '',
+    password: '',
   };
+
+
+  registerUser = {
+    email: '',
+    password: '',
+    username:'',
+    avatar:'av-1.png'
+  };
+
 
   slideOpts: any = { allowTouchMove: false };
 
@@ -80,7 +89,6 @@ export class LoginPage implements OnInit {
     if (fLogin.invalid) {
       return;
     }
-
     const valido = await this.usuarioService.login(
       this.loginUser.email,
       this.loginUser.password
@@ -98,14 +106,37 @@ export class LoginPage implements OnInit {
     console.log( this.loginUser); */
   }
 
+
+
   registro(fRegistro: NgForm) {
     console.log(fRegistro.valid);
+    if (fRegistro.invalid) { return;}
+
+    let userRegitred ={
+      username: this.registerUser.username,
+      email: this.registerUser.email,
+      password: this.registerUser.password,
+      avatar: this.registerUser.avatar
+    }
+
+    this.usuarioService.registro(userRegitred).subscribe( data =>{
+    localStorage.setItem('ACCES_TOKEN', data['token']);
+    console.log(data)
+    this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
+  }, err =>{
+    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.clear();
+    console.log("error");
+    if (err.status == 400) { console.log("404")}
+    this.UiService.alertaInformativa('Usuario y contraseña no son correctas');
+    } )
   }
 
   seleccionarAvatar(avatar) {
     this.avatars.forEach((av) => (av.seleccionado = false));
-
     avatar.seleccionado = true;
+    this.registerUser.avatar = avatar.img;
+    console.log(avatar.img)
   }
 
   mostrarRegistro() {
