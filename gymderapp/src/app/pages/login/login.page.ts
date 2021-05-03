@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,6 +11,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
+  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   avatars = [
     {
@@ -78,14 +80,52 @@ export class LoginPage implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
-    private UiService: UiServiceService
+    private UiService: UiServiceService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     /* this.slides.lockSwipes( true ); */
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
+      password: ['', [Validators.required, Validators.nullValidator]],
+     /*  fechanacimiento: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
+      fechavacunado: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
+      profesion: [''],
+      vacuna: ['']  */
+    });
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
+      username: ['', [Validators.required, Validators.nullValidator]],
+      password: ['', [Validators.required, Validators.nullValidator]],
+     /*  fechanacimiento: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
+      fechavacunado: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
+      profesion: [''],
+      vacuna: ['']  */
+    });
+
   }
 
-  async login(fLogin: NgForm) {
+  async login() {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    const valido = await this.usuarioService.login(
+      this.loginForm.value.email,
+      this.loginForm.value.password
+    );
+
+    if (valido) {
+      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
+    } else {
+      console.log('error');
+      this.UiService.alertaInformativa('Usuario y contraseña no son correctas');
+
+    }
+
+  }
+
+  /* async login(fLogin: NgForm) {
     if (fLogin.invalid) {
       return;
     }
@@ -104,22 +144,22 @@ export class LoginPage implements OnInit {
 
     /*  console.log(fLogin.valid);
     console.log( this.loginUser); */
-  }
+  //} */
 
 
 
-  registro(fRegistro: NgForm) {
-    console.log(fRegistro.valid);
-    if (fRegistro.invalid) { return;}
+  registro() {
 
-    let userRegitred ={
-      username: this.registerUser.username,
-      email: this.registerUser.email,
-      password: this.registerUser.password,
-      avatar: this.registerUser.avatar
+    if (this.registerForm.invalid) { return;}
+
+    let userRegistered ={
+      username: this.registerForm.value.username,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password,
+      avatar: this.registerForm.value.avatar
     }
 
-    this.usuarioService.registro(userRegitred).subscribe( data =>{
+    this.usuarioService.registro(userRegistered).subscribe( data =>{
     localStorage.setItem('ACCES_TOKEN', data['token']);
     console.log(data)
     this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
