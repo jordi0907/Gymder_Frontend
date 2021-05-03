@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'reservar',
     loadChildren: () => import('./reservar/reservar.module').then( m => m.ReservarPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   }
 ];
 
