@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
+import { Observable } from 'rxjs';
 
 const URL = environment.url;
 
@@ -37,11 +38,14 @@ export class UsuarioService {
           console.log(resp);
 
           if (resp['ok'] === true) {
-            this.guardarToken(resp['token']);
+            //this.guardarToken(resp['token']);
+            localStorage.setItem('ACCES_TOKEN', resp['token']);
             resolve(true);
           } else {
-            this.token = null;
-            this.storage.clear();
+            //this.token = null;
+            //this.storage.clear();
+            localStorage.removeItem('ACCESS_TOKEN');
+            localStorage.clear();
             resolve(false);
           }
         },
@@ -52,10 +56,12 @@ export class UsuarioService {
     });
   }
 
-  logout() {
-    this.token = null;
-    this.usuario = null;
-    this.storage.clear();
+   logout() {
+    //this.token = null;
+    //this.usuario = null;
+    //this.storage.clear();
+    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
   }
 
@@ -63,4 +69,19 @@ export class UsuarioService {
     this.token = token;
     await this.storage.set('token', token);
   }
+
+  registro(nuevoresultado: Usuario): Observable<any>{
+    return this.http.post(environment.url + '/auth/signup', nuevoresultado);
+  }
+
+
+  public isLoggedIn(){
+    return localStorage.getItem('ACCESS_TOKEN') !== null;
+  }
+
+  public getToken(){
+    return localStorage.getItem('ACCESS_TOKEN');
+  }
+
+
 }
