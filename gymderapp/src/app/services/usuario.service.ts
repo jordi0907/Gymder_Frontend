@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import {UiServiceService} from '../services/ui-service.service'
 
 const URL = environment.url;
 
@@ -17,6 +18,7 @@ export class UsuarioService {
  token: string = null;
 
   constructor(
+    private uiService: UiServiceService,
     private http: HttpClient,
     private storage: Storage,
     private navCtrl: NavController
@@ -82,6 +84,21 @@ export class UsuarioService {
 
   public getToken(){
     return localStorage.getItem("ACCESS_TOKEN");
+  }
+
+  getMe(): void{
+    this.http.get<Usuario>(environment.url + '/auth/me').subscribe(user=> {
+      this.usuario = user;
+
+    }, err =>{
+
+      this.uiService.alertaInformativa('Error en la conexión');
+      } )
+  }
+
+  getUsuario(){
+    return {...this.usuario}
+
   }
 
 
