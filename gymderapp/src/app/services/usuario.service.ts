@@ -14,7 +14,7 @@ const URL = environment.url;
 export class UsuarioService {
   private usuario: Usuario = {};
 
-  token: string = null;
+ token: string = null;
 
   constructor(
     private http: HttpClient,
@@ -39,12 +39,12 @@ export class UsuarioService {
 
           if (resp['ok'] === true) {
             //this.guardarToken(resp['token']);
-            localStorage.setItem('ACCES_TOKEN', resp['token']);
+            localStorage.setItem("ACCESS_TOKEN", resp['token']);
             resolve(true);
           } else {
             //this.token = null;
             //this.storage.clear();
-            localStorage.removeItem('ACCESS_TOKEN');
+            localStorage.removeItem("ACCESS_TOKEN");
             localStorage.clear();
             resolve(false);
           }
@@ -60,7 +60,7 @@ export class UsuarioService {
     //this.token = null;
     //this.usuario = null;
     //this.storage.clear();
-    localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem("ACCESS_TOKEN");
     localStorage.clear();
     this.navCtrl.navigateRoot('/login', { animated: true });
   }
@@ -75,12 +75,13 @@ export class UsuarioService {
   }
 
 
-  public isLoggedIn(){
-    return localStorage.getItem('ACCESS_TOKEN') !== null;
+   public  isLoggedIn(){
+
+    return localStorage.getItem("ACCESS_TOKEN") !== null;
   }
 
   public getToken(){
-    return localStorage.getItem('ACCESS_TOKEN');
+    return localStorage.getItem("ACCESS_TOKEN");
   }
 
 
