@@ -25,12 +25,9 @@ export class UsuarioGuard implements CanActivateChild {
     | boolean
     | UrlTree {
     if (localStorage.getItem("ACCESS_TOKEN") !== null) {
-      console.log(this.auth.isLoggedIn());
-      console.log("true");
+      this.auth.getMe();
       return true;
     } else {
-      console.log(this.auth.isLoggedIn());
-      console.log("false");
       this.router.navigate(['login']);
       this.UiService.alertaInformativa('Se ha de iniciar sesión');
       return false;

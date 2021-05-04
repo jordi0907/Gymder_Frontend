@@ -98,10 +98,6 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
       username: ['', [Validators.required, Validators.nullValidator]],
       password: ['', [Validators.required, Validators.nullValidator]],
-     /*  fechanacimiento: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
-      fechavacunado: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
-      profesion: [''],
-      vacuna: ['']  */
     });
 
   }
@@ -124,29 +120,6 @@ export class LoginPage implements OnInit {
     }
 
   }
-
-  /* async login(fLogin: NgForm) {
-    if (fLogin.invalid) {
-      return;
-    }
-    const valido = await this.usuarioService.login(
-      this.loginUser.email,
-      this.loginUser.password
-    );
-
-    if (valido) {
-      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
-    } else {
-      console.log('error');
-      this.UiService.alertaInformativa('Usuario y contraseña no son correctas');
-
-    }
-
-    /*  console.log(fLogin.valid);
-    console.log( this.loginUser); */
-  //} */
-
-
 
   registro() {
 
