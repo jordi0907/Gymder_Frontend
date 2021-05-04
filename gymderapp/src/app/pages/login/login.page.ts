@@ -63,7 +63,7 @@ export class LoginPage implements OnInit {
     email: '',
     password: '',
     username:'',
-    avatar:'av-1.png'
+    avatar:''
   };
 
 
@@ -156,9 +156,9 @@ export class LoginPage implements OnInit {
       username: this.registerForm.value.username,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      avatar: this.registerForm.value.avatar
+      avatar:  this.registerUser.avatar
     }
-
+    console.log (userRegistered.avatar)
     this.usuarioService.registro(userRegistered).subscribe( data =>{
     localStorage.setItem('ACCES_TOKEN', data['token']);
     console.log(data)
@@ -176,7 +176,6 @@ export class LoginPage implements OnInit {
     this.avatars.forEach((av) => (av.seleccionado = false));
     avatar.seleccionado = true;
     this.registerUser.avatar = avatar.img;
-    console.log(avatar.img)
   }
 
   mostrarRegistro() {
