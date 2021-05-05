@@ -26,7 +26,7 @@ export interface Usuario {
 export interface Sala {
   name: string;
   actividad: string;
+  admin: string;
   horario: string;
   maxInscritos: number;
-  //numInscritos: number; numero actual de inscritos
 };
