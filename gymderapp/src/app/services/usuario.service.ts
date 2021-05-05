@@ -88,7 +88,7 @@ export class UsuarioService {
 
   getMe(): void{
     this.http.get<Usuario>(environment.url + '/auth/me').subscribe(user=> {
-      this.usuario = user;
+      this.usuario = user['user'];
 
     }, err =>{
 
@@ -100,6 +100,8 @@ export class UsuarioService {
     return {...this.usuario}
 
   }
+
+
 
 
 }
