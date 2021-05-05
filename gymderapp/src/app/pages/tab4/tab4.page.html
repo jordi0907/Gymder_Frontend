@@ -12,14 +12,29 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- <ion-content>
+<ion-content>
 
   <ion-row class="top-20">
 
-    <ion-col size="12" text-center>
+    <ion-col size="12" text-center class="center img">
       <img src="assets/avatars/{{ usuario.avatar }}" class="img-avatar">
     </ion-col>
 
+  </ion-row>
+
+  <ion-row>
+    <ion-col>
+      <ion-slides [options]="avatarSlide">
+        <ion-slide *ngFor="let avatar of avatars">
+          <ion-img
+            class="pick-avatar"
+            src="/assets/avatars/{{avatar.img}}"
+            [ngClass]="{ 'pick-avatar-seleccionado': avatar.seleccionado }"
+            (click)="seleccionarAvatar( avatar )"
+          ></ion-img>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
   </ion-row>
 
   <ion-row class="top-20">
@@ -33,26 +48,40 @@
 
 
 
-  <form (ngSubmit)="actualizar( fActualizar )" #fActualizar>
+  <form  [formGroup]="editarPerfilForm"  (ngSubmit)="actualizar()">
       <ion-row>
         <ion-col>
 
             <ion-list>
 
               <ion-item>
-                <ion-label>Email</ion-label>
+                <ion-label color = "primary">Email</ion-label>
                 <ion-input name="email"
                            type="email"
-                           [(ngModel)]="usuario.email"
-                           required></ion-input>
+                           formControlName="email"></ion-input>
               </ion-item>
 
               <ion-item>
-                <ion-label>Nombre</ion-label>
+                <ion-label color = "primary">Nombre</ion-label>
                 <ion-input name="nombre"
                            type="text"
-                           [(ngModel)]="usuario.nombre"
-                           required></ion-input>
+                           formControlName="nombre"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating" color = "primary">Contraseña:</ion-label>
+                  <ion-input [type]="passwordinput" formControlName="password"></ion-input>
+                  <button  item-end  class="btn_eye_icon" (click) = "VistaPassword()">
+                    <ion-icon [name]="iconpassword"></ion-icon>
+                </button>
+              </ion-item>
+             <!--  <p *ngIf="!formControls.password.valid && !formControls.password.touched"><ion-label color="danger">Las contraseñas tienen que coincidir</ion-label></p> -->
+
+              <ion-item>
+                <ion-label position="floating" color = "primary">Confirmar Contraseña:</ion-label>
+                  <ion-input [type]="confirmpasswordinput" formControlName="confirmpassword"></ion-input>
+                  <button  item-end  class="btn_eye_icon" (click) = "VistaConfirmPassword()">
+                    <ion-icon [name]="iconconfirmpassword"></ion-icon>
+                </button>
               </ion-item>
 
 
@@ -73,5 +102,5 @@
   </form>
 
 
-</ion-content> -->
+</ion-content>
 
