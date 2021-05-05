@@ -23,3 +23,10 @@ export interface Usuario {
   password?: string;
 }
 
+export interface Sala {
+  name: string;
+  actividad: string;
+  horario: string;
+  maxInscritos: number;
+  //numInscritos: number; numero actual de inscritos
+};
