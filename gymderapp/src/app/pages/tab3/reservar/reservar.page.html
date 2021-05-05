@@ -8,5 +8,16 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngFor="let sala of salas">
+    <img src="../../../../assets/pesas.jpeg" />
+    <ion-card-header>
+      <ion-card-subtitle>{{sala.name}}</ion-card-subtitle>
+      <ion-card-title>{{sala.actividad}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     Horario: {{sala.horario}} <br>
+     Ocupación max: {{sala.maxInscritos}} <br>
+    </ion-card-content>
+    <ion-button expand="full" (click)="reservar()">Reservar</ion-button>
+  </ion-card>
 </ion-content>
