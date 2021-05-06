@@ -21,4 +21,12 @@ export class ReservarService {
   addReserva(idSala: String, usuario: Usuario):Observable<any>{
     return this.http.post(environment.url + '/sala/add/'+ idSala, usuario);
   }
+
+  getReservas():Observable<any>{
+    return this.http.get(environment.url+ '/sala/my');
+  }
+
+  deleteReserva(id: String):Observable<any>{ //Eliminar reserva de un usuario
+    return this.http.delete(environment.url+ '/sala/my/'+ id);
+  }
 }

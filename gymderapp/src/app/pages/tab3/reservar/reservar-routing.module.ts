@@ -9,8 +9,8 @@ const routes: Routes = [
     component: ReservarPage
   },
   {
-    path: 'detalles',
-    //loadChildren: () => import('./detalles/detalles.module').then( m => m.DetallesPageModule)
+    path: 'reservas',
+    loadChildren: () => import('./reservas/reservas.module').then( m => m.ReservasPageModule)
   }
 ];
 
