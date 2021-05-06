@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="mostrar">
   <ion-card *ngFor="let sala of salas">
     <img src="../../../../assets/pesas.jpeg" />
     <ion-card-header>
@@ -18,6 +18,14 @@
      Horario: {{sala.horario}} <br>
      Ocupación max: {{sala.maxInscritos}} <br>
     </ion-card-content>
-    <ion-button expand="full" (click)="reservar()">Reservar</ion-button>
+    <ion-button expand="full" (click)="reservar(sala._id)">Reservar</ion-button>
   </ion-card>
+
+</ion-content>
+
+<ion-content *ngIf="!mostrar" fullscreen class="ion-padding" scroll-y="false" >
+  <br><br><br><br><br><br><br><br><br>
+<ion-text color="primary">
+  <h1>{{mensaje}}</h1>
+</ion-text>
 </ion-content>
