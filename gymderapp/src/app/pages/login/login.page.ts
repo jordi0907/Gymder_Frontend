@@ -133,7 +133,7 @@ export class LoginPage implements OnInit {
     }
     console.log (userRegistered.avatar)
     this.usuarioService.registro(userRegistered).subscribe( data =>{
-    localStorage.setItem('ACCES_TOKEN', data['token']);
+    localStorage.setItem('ACCESS_TOKEN', data['token']);
     console.log(data)
     this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
   }, err =>{
