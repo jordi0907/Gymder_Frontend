@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis reservas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="mostrar">
+  <ion-list *ngFor="let reserva of reservas">
+  <ion-item>
+    <ion-card-header>
+      <ion-card-subtitle>{{reserva.name}}</ion-card-subtitle>
+      <ion-card-title>{{reserva.actividad}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+     Horario: {{reserva.horario}} <br>
+     Ocupación max: {{reserva.maxInscritos}} <br>
+    </ion-card-content>
+  </ion-item>
+  <ion-button expand="full" (click)="delete(reserva._id)">Eliminar reserva</ion-button>
+</ion-list>
+</ion-content>
+
+<ion-content *ngIf="!mostrar" fullscreen class="ion-padding" scroll-y="false" >
+  <br><br><br><br><br><br><br><br><br>
+<ion-text color="primary">
+  <h1>{{mensaje}}</h1>
+</ion-text>
+</ion-content>
