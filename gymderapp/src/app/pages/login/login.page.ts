@@ -103,14 +103,16 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    console.log("logging");
     if (this.loginForm.invalid) {
+      console.log("es invalido");
       return;
     }
     const valido = await this.usuarioService.login(
       this.loginForm.value.email,
       this.loginForm.value.password
     );
-
+console.log("valido", valido);
     if (valido) {
       this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
     } else {

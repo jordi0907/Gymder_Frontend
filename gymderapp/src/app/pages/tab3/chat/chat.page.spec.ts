@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-
 import { ChatPage } from './chat.page';
+
 
 describe('ChatPage', () => {
   let component: ChatPage;
