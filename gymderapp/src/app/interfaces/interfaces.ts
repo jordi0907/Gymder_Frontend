@@ -21,12 +21,14 @@ export interface Usuario {
   username?: string;
   email?: string;
   password?: string;
+  role?: number;
+  salas?: Sala[]
 }
 
 export interface Sala {
-  name: string;
-  actividad: string;
-  admin: string;
-  horario: string;
-  maxInscritos: number;
+  name?: string;
+  actividad?: string;
+  admin?: string;
+  horario?: string;
+  maxInscritos?: number;
 };

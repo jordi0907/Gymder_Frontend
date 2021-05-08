@@ -4,11 +4,18 @@
     <ion-back-button></ion-back-button>
   </ion-buttons>
     <ion-title>reservar</ion-title>
-    <ion-buttons slot="end">  <ion-button size="small" color="tertiary" routerLink="/main/tabs/tab3/reservar/reservas" >Mis reservas</ion-button></ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button *ngIf="!admin" size="small" color="tertiary" routerLink="/main/tabs/tab3/reservar/reservas" >Mis reservas</ion-button>
+      <ion-button *ngIf="admin" size="small" color="tertiary" routerLink="/main/tabs/tab3/reservar/admin-reservas" >Crear sala</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="mostrar">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-card *ngFor="let sala of salas">
     <img src="../../../../assets/pesas.jpeg" />
     <ion-card-header>
@@ -19,12 +26,16 @@
      Horario: {{sala.horario}} <br>
      Ocupación max: {{sala.maxInscritos}} <br>
     </ion-card-content>
-    <ion-button expand="full" (click)="reservar(sala._id)">Reservar</ion-button>
+    <ion-button expand="full" *ngIf="!admin" (click)="reservar(sala._id)">Reservar</ion-button>
+    <ion-button expand="full" *ngIf="admin" color="danger" (click)="deleteSala(sala._id)">Eliminar</ion-button>
   </ion-card>
 
 </ion-content>
 
 <ion-content *ngIf="!mostrar" fullscreen class="ion-padding" scroll-y="false" >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <br><br><br><br><br><br><br><br><br>
 <ion-text color="primary">
   <h1>{{mensaje}}</h1>

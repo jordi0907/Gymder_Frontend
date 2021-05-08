@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'reservas',
     loadChildren: () => import('./reservas/reservas.module').then( m => m.ReservasPageModule)
+  },
+  {
+    path: 'admin-reservas',
+    loadChildren: () => import('./admin-reservas/admin-reservas.module').then( m => m.AdminReservasPageModule)
   }
 ];
 
