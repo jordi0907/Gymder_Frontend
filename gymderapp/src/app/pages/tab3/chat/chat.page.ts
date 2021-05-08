@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
+import { Usuario } from 'src/app/interfaces/interfaces';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -10,12 +12,26 @@ import { Socket } from 'ngx-socket-io';
 
 export class ChatPage implements OnInit {
 
-  constructor(private socket:Socket) { 
+  usuario: Usuario = {};
+
+  constructor(
+    private socket:Socket,
+    private usuarioService: UsuarioService
+    ) 
+  
+  { 
     console.log(socket);
-    let message= {msg:"hola"}
+    this.usuario = usuarioService.getUsuario(); 
+    let messages= {}
     this.socket.emit('connection')
-    this.socket.emit('new-message', message)
-    console.log("Esta todo bien");
+    this.socket.emit('new-message', this.usuario)
+    
+    this.socket.on('messages', function (data) {
+      messages = messages + data;
+      console.log('frontend'+messages);
+      
+
+    });
   }
 
   ngOnInit() {

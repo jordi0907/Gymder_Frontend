@@ -47,10 +47,7 @@ export class UsuarioService {
             //this.guardarToken(resp['token']);
             localStorage.setItem("ACCESS_TOKEN", resp['token']);
             resolve(true); 
-            let message= {msg:"hola " + email};
-            this.socket.emit('connection');
-            this.socket.emit('new-message', resp['user']);
-            console.log(resp['user'])
+           
             
 
 
