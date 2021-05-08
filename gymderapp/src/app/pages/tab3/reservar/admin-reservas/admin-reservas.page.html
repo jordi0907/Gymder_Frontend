@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear nueva sala</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="crearSalaForm" (ngSubmit)="createSala()">
+  <ion-item>
+    <ion-label>Sala</ion-label>
+    <ion-input type="text" name="name" formControlName="name" placeholder="nombre sala"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Actividad</ion-label>
+    <ion-input type="text" name="actividad" formControlName="actividad" placeholder="Actividad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Horario</ion-label>
+    <ion-input type="text" name="horario" formControlName="horario" placeholder="Horario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Aforo</ion-label>
+    <ion-input type="number" name="maxInscritos" formControlName="maxInscritos" placeholder="aforo max"></ion-input>
+  </ion-item>
+
+  <ion-button type="submit" expand="full" >Crear Sala</ion-button>
+</form>
+
+</ion-content>

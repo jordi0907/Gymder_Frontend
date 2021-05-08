@@ -29,4 +29,10 @@ export class ReservarService {
   deleteReserva(id: String):Observable<any>{ //Eliminar reserva de un usuario
     return this.http.delete(environment.url+ '/sala/my/'+ id);
   }
+  createSala(sala: Sala):Observable<any>{
+    return this.http.post(environment.url + '/sala/new/', sala);
+  }
+  deleteSala(id: String):Observable<any>{ //Eliminar Sala
+    return this.http.delete(environment.url+ '/sala/'+ id);
+  }
 }
