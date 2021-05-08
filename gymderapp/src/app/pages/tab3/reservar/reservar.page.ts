@@ -19,6 +19,7 @@ export class ReservarPage implements OnInit {
 
   ngOnInit() {
     this.usuarioService.getUsuario();
+    console.log('',this.usuarioService.getUsuario())
     this.reservarService.getSalas().subscribe((salas :any) =>{
     if(salas['ok']==true){
       this.mostrar = true;
