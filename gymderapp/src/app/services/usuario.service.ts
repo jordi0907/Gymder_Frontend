@@ -76,6 +76,12 @@ export class UsuarioService {
     return this.http.post(environment.url + '/auth/signup', nuevoresultado);
   }
 
+  updatePerfil(nuevoresultado: Usuario): Observable<any>{
+    return this.http.put(environment.url + '/user/updateuser', nuevoresultado);
+  }
+
+
+
 
    public  isLoggedIn(){
 
@@ -100,6 +106,8 @@ export class UsuarioService {
     return {...this.usuario}
 
   }
+
+
 
 
 
