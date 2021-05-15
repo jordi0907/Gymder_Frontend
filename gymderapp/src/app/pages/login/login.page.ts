@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import {Validator} from '../../interfaces/validator';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,11 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
   loginForm: FormGroup;
   registerForm: FormGroup;
+
+  passwordinput = 'password';
+  confirmpasswordinput = 'password';
+  iconpassword = "eye-off";
+  iconconfirmpassword = "eye-off";
 
   avatars = [
     {
@@ -63,7 +69,7 @@ export class LoginPage implements OnInit {
     email: '',
     password: '',
     username:'',
-    avatar:''
+    avatar:'av-1.png'
   };
 
 
@@ -87,8 +93,18 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     /* this.slides.lockSwipes( true ); */
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
-      password: ['', [Validators.required, Validators.nullValidator]],
+      //email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
+      email: [
+        '',
+        [Validators.required, Validators.nullValidator, Validators.email],
+      ],
+      //password: ['', [Validators.required, Validators.nullValidator]],
+      password: [
+        '',
+        [Validators.required, Validators.nullValidator],
+      ],
+
+      //confirmpassword: ['', [Validators.required, Validators.nullValidator]],
      /*  fechanacimiento: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
       fechavacunado: ['', [Validators.pattern(/^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/)]],
       profesion: [''],
@@ -98,7 +114,12 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
       username: ['', [Validators.required, Validators.nullValidator]],
       password: ['', [Validators.required, Validators.nullValidator]],
-    });
+      confirmpassword: [
+        '',
+        [Validators.required],
+      ],
+
+    },{validator: Validator.checkPassword});
 
   }
 
@@ -125,13 +146,14 @@ export class LoginPage implements OnInit {
 
     if (this.registerForm.invalid) { return;}
 
+
     let userRegistered ={
       username: this.registerForm.value.username,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
       avatar:  this.registerUser.avatar
     }
-    console.log (userRegistered.avatar)
+    console.log ("avatarescogido",userRegistered.avatar)
     this.usuarioService.registro(userRegistered).subscribe( data =>{
     localStorage.setItem('ACCESS_TOKEN', data['token']);
     console.log(data)
@@ -162,4 +184,41 @@ export class LoginPage implements OnInit {
     this.slides.slideTo(1);
     this.slides.lockSwipes(true);
   }
+
+
+  VistaConfirmPassword(){
+    if (this.confirmpasswordinput == "password"){
+      this.confirmpasswordinput = "text";
+    }
+    else{
+      this.confirmpasswordinput = "password"
+    }
+
+    if (this.iconconfirmpassword == "eye-off"){
+      this.iconconfirmpassword = "eye";
+    }
+    else{
+      this.iconconfirmpassword = "eye-off";
+    }
+  }
+
+
+
+VistaPassword(){
+  if (this.passwordinput == "password"){
+    this.passwordinput = "text";
+  }
+  else{
+    this.passwordinput = "password"
+  }
+
+  if (this.iconpassword == "eye-off"){
+    this.iconpassword = "eye";
+  }
+  else{
+    this.iconpassword = "eye-off";
+  }
+}
+
+
 }

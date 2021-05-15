@@ -18,6 +18,7 @@ export class Tab4Page implements OnInit {
   confirmpasswordinput = 'password';
   iconpassword = "eye-off";
   iconconfirmpassword = "eye-off";
+  passwordDefecto: string;
 
   avatars = [
     {
@@ -98,20 +99,26 @@ export class Tab4Page implements OnInit {
 
   actualizar() {
     if (this.editarPerfilForm.invalid) { return;}
+    if(this.editarPerfilForm.value.password == "Cambiar contraseña aquí"){
+      this.passwordDefecto = null;
+      console.log("La contraseña es", this.editarPerfilForm.value.password);
+    }else{
+      this.passwordDefecto = this.editarPerfilForm.value.password
+    }
 
     let userRegistered ={
       username: this.editarPerfilForm.value.nombre,
       email: this.editarPerfilForm.value.email,
-      password: this.editarPerfilForm.value.password,
+      password: this.passwordDefecto,
       avatar:  this.registerUser.avatar || this.usuario.avatar
     }
     console.log (userRegistered);
     this.usuarioService.updatePerfil(userRegistered).subscribe( data =>{
     localStorage.setItem('ACCESS_TOKEN', data['token']);
-    console.log(data)
+    console.log("he guardado el token", data)
     this.UiService.alertaInformativa('Usuario y contraseña actualizado');
   }, err =>{
-   // localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('ACCESS_TOKEN');
    // localStorage.clear();
     console.log("error");
     if (err.status == 400) { console.log("404")}
