@@ -1,8 +1,7 @@
 import { ReservarService } from 'src/app/services/reservar.service';
 import { Component, OnInit } from '@angular/core';
 import {Sala} from 'src/app/interfaces/interfaces'
-import { NavController } from '@ionic/angular';
-
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reservas',
@@ -14,7 +13,9 @@ export class ReservasPage implements OnInit {
   mostrar: boolean = false;
   mensaje: String;
 
-  constructor(private reservarService: ReservarService,private navCtrl: NavController) { }
+  constructor(
+    private reservarService: ReservarService,
+    public alertController: AlertController) { }
 
   ngOnInit() {
     this.reservarService.getReservas().subscribe((reservas :any) =>{
@@ -29,9 +30,28 @@ export class ReservasPage implements OnInit {
       })
   }
 
+  async presentAlertConfirm(id) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar reserva?',
+      message: '<strong>Estás seguro que quieres elminar la reserva?<br><br> Recuerda que el aforo es limitado.</strong>',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.delete(id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   delete(id){
     this.reservarService.deleteReserva(id).subscribe(async data =>{
-      this.navCtrl.navigateRoot('/main/tabs/tab3/reservar', { animated: true});
+      this.ngOnInit();
     })
   }
 
