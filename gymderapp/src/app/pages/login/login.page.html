@@ -13,19 +13,22 @@
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>Email</ion-label>
+                  <ion-label color = "primary">Email</ion-label>
                   <ion-input name="email" type="email" formControlName="email">
                   </ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Password</ion-label>
+                  <ion-label color = "primary">Password</ion-label>
                   <ion-input
                     name="password"
                     type="password"
                     formControlName="password"
                   ></ion-input>
                 </ion-item>
+
+
+
               </ion-list>
             </ion-col>
           </ion-row>
@@ -64,12 +67,12 @@
           </ion-col>
         </ion-row>
 
-        <form [formGroup]="registerForm" (ngSubmit)="registro()">
+        <form [formGroup]="registerForm" >
           <ion-row>
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>Email</ion-label>
+                  <ion-label color = "primary">Email</ion-label>
                   <ion-input
                     name="email"
                     type="email"
@@ -78,7 +81,7 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Nombre</ion-label>
+                  <ion-label color = "primary">Nombre</ion-label>
                   <ion-input
                     name="username"
                     type="text"
@@ -87,20 +90,43 @@
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Password</ion-label>
-                  <ion-input
-                    name="password"
-                    type="password"
-                    formControlName="password"
-                  ></ion-input>
+                  <ion-label position="floating" color = "primary">Contraseña:</ion-label>
+                    <ion-input [type]="passwordinput" formControlName="password"></ion-input>
+                    <button  item-end  class="btn_eye_icon" (click) = "VistaPassword()">
+                      <ion-icon [name]="iconpassword"></ion-icon>
+                  </button>
                 </ion-item>
+              <p *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls.password.touched ">
+
+              <ion-label color="danger">Las contraseñas tienen que coincidir</ion-label>
+              </p>
+
+
+
+                <ion-item>
+                  <ion-label position="floating" color = "primary">Confirm Passw:</ion-label>
+                    <ion-input [type]="confirmpasswordinput" formControlName="confirmpassword"></ion-input>
+                    <button  item-end  class="btn_eye_icon" (click) = "VistaConfirmPassword()">
+                      <ion-icon [name]="iconconfirmpassword"></ion-icon>
+                  </button>
+                </ion-item>
+               <!--  <p *ngIf="editarPerfilForm.controls['confirmpassword'].hasError('required') || editarPerfilForm.controls['confirmpassword'].hasError('checkPassword')"> -->
+                <p *ngIf="registerForm.controls['confirmpassword'].hasError('required') && registerForm.controls.confirmpassword.touched ">
+
+                  <ion-label color="danger">Se ha de rellenar este campo</ion-label>
+                  </p>
+                <p *ngIf="registerForm.hasError('checkPassword')">
+
+                <ion-label color="danger">Las contraseñas tienen que coincidir</ion-label>
+                </p>
+
               </ion-list>
             </ion-col>
           </ion-row>
 
           <ion-row>
             <ion-col>
-              <ion-button type="submit" color="tertiary" shape="round">
+              <ion-button type="submit" color="tertiary" shape="round" (click) = "registro()">
                 Crear usuario
               </ion-button>
             </ion-col>

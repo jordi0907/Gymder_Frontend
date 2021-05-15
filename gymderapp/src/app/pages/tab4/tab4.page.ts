@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
+import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import {Validator} from '../../interfaces/validator';
 
 @Component({
   selector: 'app-tab4',
@@ -15,6 +18,7 @@ export class Tab4Page implements OnInit {
   confirmpasswordinput = 'password';
   iconpassword = "eye-off";
   iconconfirmpassword = "eye-off";
+  passwordDefecto: string;
 
   avatars = [
     {
@@ -61,7 +65,9 @@ export class Tab4Page implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private navCtrl: NavController,
+    private UiService: UiServiceService,
   ) {}
   ngOnInit() {
     this.usuario = this.usuarioService.getUsuario();
@@ -82,16 +88,45 @@ export class Tab4Page implements OnInit {
       ],
       confirmpassword: [
         'Cambiar contraseña aquí',
-        [Validators.required, Validators.nullValidator],
+        [Validators.required],
       ],
-    });
+    },{validator: Validator.checkPassword});
   }
 
   logout() {
     this.usuarioService.logout();
   }
 
-  actualizar() {}
+  actualizar() {
+    if (this.editarPerfilForm.invalid) { return;}
+    if(this.editarPerfilForm.value.password == "Cambiar contraseña aquí"){
+      this.passwordDefecto = null;
+      console.log("La contraseña es", this.editarPerfilForm.value.password);
+    }else{
+      this.passwordDefecto = this.editarPerfilForm.value.password
+    }
+
+    let userRegistered ={
+      username: this.editarPerfilForm.value.nombre,
+      email: this.editarPerfilForm.value.email,
+      password: this.passwordDefecto,
+      avatar:  this.registerUser.avatar || this.usuario.avatar
+    }
+    console.log (userRegistered);
+    this.usuarioService.updatePerfil(userRegistered).subscribe( data =>{
+    localStorage.setItem('ACCESS_TOKEN', data['token']);
+    console.log("he guardado el token", data)
+    this.UiService.alertaInformativa('Usuario y contraseña actualizado');
+  }, err =>{
+    localStorage.removeItem('ACCESS_TOKEN');
+   // localStorage.clear();
+    console.log("error");
+    if (err.status == 400) { console.log("404")}
+    this.UiService.alertaInformativa('Usuario y contraseña no son correctas');
+    } )
+
+
+  }
 
 
 

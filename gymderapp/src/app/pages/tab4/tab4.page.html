@@ -48,7 +48,7 @@
 
 
 
-  <form  [formGroup]="editarPerfilForm"  (ngSubmit)="actualizar()">
+  <form  [formGroup]="editarPerfilForm">
       <ion-row>
         <ion-col>
 
@@ -74,7 +74,10 @@
                     <ion-icon [name]="iconpassword"></ion-icon>
                 </button>
               </ion-item>
-            <p *ngIf="!formControls.password.valid && !formControls.password.touched"><ion-label color="danger">Las contraseñas tienen que coincidir</ion-label></p>
+            <p *ngIf="editarPerfilForm.controls['password'].hasError('required')">
+            <!-- <p *ngIf="!formControls.password.valid && !formControls.password.touched"> -->
+            <ion-label color="danger">Las contraseñas tienen que coincidir</ion-label>
+            </p>
 
               <ion-item>
                 <ion-label position="floating" color = "primary">Confirmar Contraseña:</ion-label>
@@ -83,7 +86,15 @@
                     <ion-icon [name]="iconconfirmpassword"></ion-icon>
                 </button>
               </ion-item>
+             <!--  <p *ngIf="editarPerfilForm.controls['confirmpassword'].hasError('required') || editarPerfilForm.controls['confirmpassword'].hasError('checkPassword')"> -->
+              <p *ngIf="editarPerfilForm.controls['confirmpassword'].hasError('required')">
 
+                <ion-label color="danger">Se ha de rellenar este campo</ion-label>
+                </p>
+              <p *ngIf="editarPerfilForm.hasError('checkPassword')">
+
+              <ion-label color="danger">Las contraseñas tienen que coincidir</ion-label>
+              </p>
 
             </ion-list>
         </ion-col>
@@ -93,7 +104,8 @@
         <ion-col text-center>
           <ion-button type="submit"
                       color="tertiary"
-                      shape="round">
+                      shape="round"
+                      (click) = "actualizar()">
           Actualizar
         </ion-button>
       </ion-col>
