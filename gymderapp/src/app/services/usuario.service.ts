@@ -101,6 +101,10 @@ export class UsuarioService {
 
   }
 
+  getUsername(){
+    return this.usuario.username;
+  }
+
 
 
 
