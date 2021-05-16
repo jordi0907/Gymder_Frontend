@@ -70,6 +70,7 @@ export class Tab4Page implements OnInit {
     private UiService: UiServiceService,
   ) {}
   ngOnInit() {
+
     this.usuario = this.usuarioService.getUsuario();
     console.log('el usuario dentro del tab4', this.usuario);
 
