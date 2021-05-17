@@ -23,13 +23,8 @@ export class ReservarPage implements OnInit {
     public alertController: AlertController) { }
 
   ngOnInit() {
-<<<<<<< HEAD
     if(this.usuarioService.getUsuario().role == 1) this.admin=true;
     else this.admin = false;
-=======
-    this.usuarioService.getUsuario();
-    console.log('',this.usuarioService.getUsuario())
->>>>>>> e4d415c4cfeb0f972a4463111931378f732440cf
     this.reservarService.getSalas().subscribe((salas :any) =>{
     if(salas['ok']==true){
       this.mostrar = true;
