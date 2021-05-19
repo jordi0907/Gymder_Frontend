@@ -20,28 +20,48 @@ export class ChatPage implements OnInit {
   listaMensajes : any[] = [];
   listaUser:  Usuario [] = [];
   
-  constructor(private socket:Socket, private usuarioService: UsuarioService, private formBuilder: FormBuilder) { 
+  constructor(
+    private socket:Socket, 
+    private usuarioService: UsuarioService, 
+    private formBuilder: FormBuilder
+    ) 
+{ 
  
     console.log(socket);
     this.usuario= usuarioService.getUsuario();
     console.log(this.usuario);
+
+    if (this.listaMensajes != null) {  //CREO QUE AQUI ESTA EL ERROR, LO CARGA Y NO HAY NADA DENTRO
+    this.socket.on('messages', (data) => {
+      console.log('error1', data);
+      
+      this.listaMensajes = data;
+      
+      console.log("*", this.listaMensajes); 
+    
+    });  
+  }
     
   }
 
   ngOnInit() { 
     this.socket.emit('connection')
-    this.socket.emit('me-conecto', this.usuario)
+   this.socket.emit('me-conecto', this.usuario)
     this.socket.on('listausuarios', (data) => 
     {
       this.listaUser = data;
       console.log('la lista de conectados es: ', data ) 
     });
 
-    this.socket.on('messages', (data) => {
-      this.listaMensajes = data;
-      console.log("*", this.listaMensajes); 
+   // this.socket.on('messages', (data) => {
+   //   console.log('error1', data);
+      
+   //   this.listaMensajes = data;
+      
+   //   console.log("*", this.listaMensajes); 
   
-    });  
+   // }
+   // );  
 
     console.log("Esta todo bien 2");
     this.usuario = this.usuarioService.getUsuario();
@@ -51,8 +71,12 @@ export class ChatPage implements OnInit {
   }
   AddM() {
     console.log(this.usuario.username);
+    if (this.texto){
+    console.log('error2', this.texto);
     this.socket.emit('new-message-g', (this.usuario.username + ": " + this.texto))
-
+    this.texto = "";
+    }
+    
   }
 
 }
