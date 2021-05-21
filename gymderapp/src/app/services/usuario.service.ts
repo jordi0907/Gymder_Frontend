@@ -80,8 +80,9 @@ export class UsuarioService {
     return this.http.put(environment.url + '/user/updateuser', nuevoresultado);
   }
 
-
-
+  forgotPassword(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/forgotpassword', email);
+  }
 
    public  isLoggedIn(){
 
@@ -106,6 +107,40 @@ export class UsuarioService {
     return {...this.usuario}
 
   }
+
+  checkEmail(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/checkemail', email);
+  }
+
+  signinRS(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/signinrs', email);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
