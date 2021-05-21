@@ -5,7 +5,9 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import {UiServiceService} from '../services/ui-service.service'
+import {UiServiceService} from '../services/ui-service.service';
+import { Socket } from 'ngx-socket-io';
+
 
 const URL = environment.url;
 
@@ -21,7 +23,9 @@ export class UsuarioService {
     private uiService: UiServiceService,
     private http: HttpClient,
     private storage: Storage,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private socket: Socket
+
   ) {
     this.init();
   }
@@ -43,6 +47,13 @@ export class UsuarioService {
             //this.guardarToken(resp['token']);
             localStorage.setItem("ACCESS_TOKEN", resp['token']);
             resolve(true);
+
+
+
+
+
+
+
           } else {
             //this.token = null;
             //this.storage.clear();
@@ -117,30 +128,9 @@ export class UsuarioService {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  getUsername(){
+    return this.usuario.username;
+  }
 
 
 
