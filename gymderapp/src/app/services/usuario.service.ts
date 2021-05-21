@@ -46,9 +46,9 @@ export class UsuarioService {
           if (resp['ok'] === true) {
             //this.guardarToken(resp['token']);
             localStorage.setItem("ACCESS_TOKEN", resp['token']);
-            resolve(true); 
-           
-            
+            resolve(true);
+
+
 
 
 
@@ -91,8 +91,9 @@ export class UsuarioService {
     return this.http.put(environment.url + '/user/updateuser', nuevoresultado);
   }
 
-
-
+  forgotPassword(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/forgotpassword', email);
+  }
 
    public  isLoggedIn(){
 
@@ -117,6 +118,15 @@ export class UsuarioService {
     return {...this.usuario}
 
   }
+
+  checkEmail(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/checkemail', email);
+  }
+
+  signinRS(email: any): Observable<any>{
+    return this.http.post(environment.url + '/auth/signinrs', email);
+  }
+
 
   getUsername(){
     return this.usuario.username;

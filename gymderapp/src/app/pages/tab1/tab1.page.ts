@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from 'src/app/services/posts.service';
 import { Socket } from 'ngx-socket-io';
 import { Usuario } from '../../interfaces/interfaces';
 import { UsuarioService } from '../../services/usuario.service';
@@ -9,7 +10,7 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-   
+
   usuario1: Usuario;
 
 
@@ -17,18 +18,18 @@ export class Tab1Page implements OnInit{
 
   constructor(
     private socket:Socket,
-    private usuarioService1: UsuarioService  
+    private usuarioService1: UsuarioService
     ) {}
 
   ngOnInit() {
 
 
-  
+
     //console.log("Esta todo bien");
   }
 
   logout() {
-    
+
   }
 
 
