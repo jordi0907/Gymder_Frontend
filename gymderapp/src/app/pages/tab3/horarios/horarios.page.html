@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Horarios
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+
+    <ion-calendar [(ngModel)]="date"
+                  (onChange)="onChange($event)"
+                  [options]="optionsRange"
+                  [type]="type"
+                  [format]="'YYYY-MM-DD'">
+    </ion-calendar>
+
+  </div>
+</ion-content>
