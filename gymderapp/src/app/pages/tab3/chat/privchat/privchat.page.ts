@@ -4,7 +4,7 @@ import { Socket } from 'ngx-socket-io';
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { MenuController, ModalController, NavController} from '@ionic/angular';
+import { MenuController, ModalController, NavController, NavParams} from '@ionic/angular';
 
 @Component({
   selector: 'app-privchat',
@@ -17,24 +17,26 @@ export class PrivchatPage implements OnInit {
   texto: string;
   Enviarform : FormGroup;
   nombre: string;
+  nsala: Number;
 
   constructor(private socket:Socket, 
     private usuarioService: UsuarioService,
     private navCtrl: NavController, 
     private formBuilder: FormBuilder) {
-    
     this.usuario= usuarioService.getUsuario();
     console.log(this.usuario);
 
    }
 
   ngOnInit() {
-    //this.nombre = this.params.get('usuarioEnviar');
-    //console.log(this.nombre);
     this.socket.on('messages', (data) => {
       this.listaMensajes = data;
       console.log("*", this.listaMensajes); 
-  
+    });
+    
+    this.socket.on('numero', (data) => {
+      this.nsala = data;
+      console.log('mi numero de sala es: ' + this.nsala); 
     });  
     
   }
