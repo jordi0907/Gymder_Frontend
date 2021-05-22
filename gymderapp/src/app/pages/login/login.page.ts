@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { IonSlides, NavController } from '@ionic/angular';
+
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import {Validator} from '../../interfaces/validator';
 
+import { Socket } from 'ngx-socket-io';
+import { Usuario } from 'src/app/interfaces/interfaces';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -14,6 +17,8 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
   loginForm: FormGroup;
   registerForm: FormGroup;
+
+  
 
   passwordinput = 'password';
   confirmpasswordinput = 'password';
@@ -82,15 +87,23 @@ export class LoginPage implements OnInit {
       this.slideOpts = { allowTouchMove: false };
     }
   }
-
+  usuario: Usuario = {};
   constructor(
     private usuarioService: UsuarioService,
     private navCtrl: NavController,
     private UiService: UiServiceService,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private socket: Socket
+  ) {
+ 
+  }
 
   ngOnInit() {
+
+
+
+
+    
     /* this.slides.lockSwipes( true ); */
     this.loginForm = this.formBuilder.group({
       //email: ['', [Validators.required, Validators.nullValidator, Validators.email]],
@@ -122,7 +135,7 @@ export class LoginPage implements OnInit {
     },{validator: Validator.checkPassword});
 
   }
-
+  
   async login() {
     console.log("logging");
     if (this.loginForm.invalid) {
@@ -131,11 +144,14 @@ export class LoginPage implements OnInit {
     }
     const valido = await this.usuarioService.login(
       this.loginForm.value.email,
-      this.loginForm.value.password
+      this.loginForm.value.password,
+      
     );
 console.log("valido", valido);
     if (valido) {
       this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
+    
+      
     } else {
       console.log('error');
       this.UiService.alertaInformativa('Usuario y contraseña no son correctas');

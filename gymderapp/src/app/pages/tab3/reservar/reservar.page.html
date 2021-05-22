@@ -27,7 +27,7 @@
      Ocupación max: {{sala.maxInscritos}} <br>
     </ion-card-content>
     <ion-button expand="full" *ngIf="!admin" (click)="reservar(sala._id)">Reservar</ion-button>
-    <ion-button expand="full" *ngIf="admin" color="danger" (click)="deleteSala(sala._id)">Eliminar</ion-button>
+    <ion-button expand="full" *ngIf="admin" color="danger" (click)="alertaDeleteSala(sala._id,sala.name,sala.actividad)">Eliminar</ion-button>
   </ion-card>
 
 </ion-content>

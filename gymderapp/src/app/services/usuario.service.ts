@@ -47,6 +47,8 @@ export class UsuarioService {
             //this.guardarToken(resp['token']);
             localStorage.setItem("ACCESS_TOKEN", resp['token']);
             resolve(true); 
+            
+           
            
             
 

@@ -63,6 +63,25 @@ export class ReservarPage implements OnInit {
     })
   }
 
+  async alertaDeleteSala(id,name,actividad) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar reserva?',
+      message: '<strong>Estás seguro que quieres elminar la sala:<br><br>'+name+', '+actividad+'<br></strong>',
+      buttons: [
+        {
+          text: 'Cancelar',
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.deleteSala(id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   doRefresh(event) {
 
     this.reservarService.getSalas().subscribe((salas :any) =>{
