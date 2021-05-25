@@ -156,6 +156,10 @@ export class LoginPage implements OnInit {
     }
   }
 
+  contactUs(){
+    this.navCtrl.navigateRoot('/login/contact-us', { animated: true});
+  }
+
   registro() {
     if (this.registerForm.invalid) {
       return;

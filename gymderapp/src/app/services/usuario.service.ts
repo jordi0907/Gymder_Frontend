@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
+import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
@@ -34,6 +35,8 @@ export class UsuarioService {
     const storage2 = await this.storage.create();
     this.storage = storage2;
   }
+
+  
 
   login(email: string, password: string) {
     const data = { email, password };
@@ -98,10 +101,16 @@ export class UsuarioService {
   updatePerfil(nuevoresultado: Usuario): Observable<any>{
     return this.http.put(environment.url + '/user/updateuser', nuevoresultado);
   }
+<<<<<<< HEAD
 
   forgotPassword(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/forgotpassword', email);
   }
+=======
+ 
+
+
+>>>>>>> 4e007ca001dc35ee46c3d8d091e6a7834d135998
 
    public  isLoggedIn(){
 
@@ -127,6 +136,7 @@ export class UsuarioService {
 
   }
 
+<<<<<<< HEAD
   checkEmail(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/checkemail', email);
   }
@@ -136,9 +146,19 @@ export class UsuarioService {
   }
 
 
+=======
+  contactUs(mensajeContacto : MensajeContacto): Observable<any>{
+    return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
+
+  }
+
+>>>>>>> 4e007ca001dc35ee46c3d8d091e6a7834d135998
   getUsername(){
     return this.usuario.username;
   }
+
+  
+
 
 
 
