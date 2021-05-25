@@ -49,17 +49,11 @@ export class UsuarioService {
           if (resp['ok'] === true) {
             //this.guardarToken(resp['token']);
             localStorage.setItem("ACCESS_TOKEN", resp['token']);
-<<<<<<< HEAD
             resolve(true); 
             
            
            
             
-=======
-            resolve(true);
-
-
->>>>>>> d889122470dcb515b234bb224ec28529f561993e
 
 
 
@@ -101,16 +95,10 @@ export class UsuarioService {
   updatePerfil(nuevoresultado: Usuario): Observable<any>{
     return this.http.put(environment.url + '/user/updateuser', nuevoresultado);
   }
-<<<<<<< HEAD
 
   forgotPassword(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/forgotpassword', email);
   }
-=======
- 
-
-
->>>>>>> 4e007ca001dc35ee46c3d8d091e6a7834d135998
 
    public  isLoggedIn(){
 
@@ -136,7 +124,7 @@ export class UsuarioService {
 
   }
 
-<<<<<<< HEAD
+
   checkEmail(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/checkemail', email);
   }
@@ -146,13 +134,13 @@ export class UsuarioService {
   }
 
 
-=======
+
   contactUs(mensajeContacto : MensajeContacto): Observable<any>{
     return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
 
   }
 
->>>>>>> 4e007ca001dc35ee46c3d8d091e6a7834d135998
+
   getUsername(){
     return this.usuario.username;
   }
