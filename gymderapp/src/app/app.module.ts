@@ -13,6 +13,9 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import {environment} from '../environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+
+
 const config: SocketIoConfig = { url: environment.url, options: {}};
 
 @NgModule({
@@ -20,7 +23,9 @@ const config: SocketIoConfig = { url: environment.url, options: {}};
   entryComponents: [],
   
   imports: [HttpClientModule,SocketIoModule.forRoot(config), BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot() ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

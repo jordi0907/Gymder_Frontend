@@ -36,7 +36,43 @@ export class ChatPage implements OnInit {
     
   }
 
-  async Invit() {
+  
+
+  ngOnInit() { 
+    this.socket.emit('connection')
+    this.socket.emit('me-conecto', this.usuario)
+    this.socket.on('listausuarios', (data) => 
+    {
+      this.listaUser = data;
+      console.log('la lista de conectados es: ', data ) 
+    });
+
+    this.socket.on('messages', (data) => {
+      this.listaMensajes = data;
+      console.log("*", this.listaMensajes); 
+
+    });  
+    this.socket.on('invitacion2', (data, data2 ) => {
+      this.nsala = data2;
+      console.log("mi numero de sala es: invitado " + this.nsala);
+      if(data == this.usuario.username){
+      console.log("quieres recibir invitacion?"); 
+      this.Invit();
+      }
+
+    }); 
+    this.Enviarform = this.formBuilder.group({});
+  }
+
+
+  AddM() {   //envio de mensajes
+    console.log(this.usuario.username);
+    this.socket.emit('new-message-g', (this.usuario.username + ": " + this.texto))
+    this.texto = "";
+
+  }
+
+  async Invit() {  //
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Has recibido una invitacion',
@@ -63,38 +99,7 @@ export class ChatPage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() { 
-    this.socket.emit('connection')
-    this.socket.emit('me-conecto', this.usuario)
-    this.socket.on('listausuarios', (data) => 
-    {
-      this.listaUser = data;
-      console.log('la lista de conectados es: ', data ) 
-    });
-
-    this.socket.on('messages', (data) => {
-      this.listaMensajes = data;
-      console.log("*", this.listaMensajes); 
-
-    });  
-    this.socket.on('invitacion2', (data, data2) => {
-      this.nsala = data2;
-      console.log("mi numero de sala es: " + this.nsala);
-      if(data == this.usuario.username){
-      console.log("quieres recibir invitacion?"); 
-      this.Invit();
-      }
-
-    }); 
-    this.Enviarform = this.formBuilder.group({});
-  }
-  AddM() {
-    console.log(this.usuario.username);
-    this.socket.emit('new-message-g', (this.usuario.username + ": " + this.texto))
-    this.texto = "";
-
-  }
-  NombreEnviar(usuarioEnviar) {
+  NombreEnviar(usuarioEnviar) {  //lo usamos en el html 
     console.log(usuarioEnviar)
     this.socket.emit('invitacion', (usuarioEnviar))
     this.navCtrl.navigateRoot('/main/tabs/tab3/chat/privchat');

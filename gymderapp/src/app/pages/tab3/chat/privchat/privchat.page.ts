@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } 
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MenuController, ModalController, NavController, NavParams} from '@ionic/angular';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-privchat',
@@ -14,10 +15,11 @@ import { MenuController, ModalController, NavController, NavParams} from '@ionic
 export class PrivchatPage implements OnInit {
   usuario: Usuario = {};
   listaMensajes : any[] = [];
+  mensajesPrivado: any[] = [];
   texto: string;
   Enviarform : FormGroup;
   nombre: string;
-  nsala: Number;
+  nsala: any;
 
   constructor(private socket:Socket, 
     private usuarioService: UsuarioService,
@@ -28,7 +30,7 @@ export class PrivchatPage implements OnInit {
 
    }
 
-  ngOnInit() {
+  ngOnInit() {  //pendiente de mensajes ...
     this.socket.on('messages', (data) => {
       this.listaMensajes = data;
       console.log("*", this.listaMensajes); 
@@ -36,14 +38,28 @@ export class PrivchatPage implements OnInit {
     
     this.socket.on('numero', (data) => {
       this.nsala = data;
-      console.log('mi numero de sala es: ' + this.nsala); 
+      console.log('mi numero de sala es: invitador ' + this.nsala); 
     });  
     
+    this.socket.on('mensajeSala', (data, data2) => {
+      console.log ("mensajes fin", data);
+      console.log ("nº de sala fin", data2)
+      if(data2 == this.nsala){
+      this.mensajesPrivado.push(data);
+      console.log("lista mensajes privados", this.mensajesPrivado);
+      }
+      else {
+        console.log("no son iguales")
+      }
+    })
+    
   }
-  AddM() {
+  AddM() {  //enviar mensaje privado
     console.log(this.usuario.username);
-    this.socket.emit('new-message-g', (this.usuario.username + ": " + this.texto))
+    this.socket.emit('mensajesPriv', 
+    this.usuario.username + ": " + this.texto,
+    this.nsala)
     this.texto = "";
-  }
+  }  
 
 }

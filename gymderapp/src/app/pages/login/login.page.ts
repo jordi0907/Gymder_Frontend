@@ -160,6 +160,10 @@ console.log("valido", valido);
 
   }
 
+  contactUs(){
+    this.navCtrl.navigateRoot('/login/contact-us', { animated: true});
+  }
+
   registro() {
 
     if (this.registerForm.invalid) { return;}
