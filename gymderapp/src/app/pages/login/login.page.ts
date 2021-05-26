@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
   loginForm: FormGroup;
   registerForm: FormGroup;
-  socialAuthService: SocialAuthService;
+  SocialAuthService: SocialAuthService;
 
   
 
@@ -93,10 +93,8 @@ export class LoginPage implements OnInit {
     private navCtrl: NavController,
     private UiService: UiServiceService,
     private formBuilder: FormBuilder,
-    private socket: Socket
-  ) {
- 
-  }
+    private socialAuthService: SocialAuthService
+  ) {}
 
   ngOnInit() {
 
@@ -147,9 +145,7 @@ export class LoginPage implements OnInit {
     );
     console.log('valido', valido);
     if (valido) {
-      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true});
-    
-      
+      this.navCtrl.navigateRoot('/main/tabs/tab1', { animated: true });
     } else {
       console.log('error');
       this.UiService.alertaInformativa('Usuario y contraseña no son correctas');
