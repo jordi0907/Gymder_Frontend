@@ -26,6 +26,7 @@
     "@ionic/storage": "^3.0.4",
     "@ionic/storage-angular": "^3.0.6",
     "@types/socket.io": "^2.1.13",
+    "angularx-social-login": "^3.5.7",
     "firebase": "^8.4.3",
     "rxjs": "~6.6.0",
     "socket.io": "^4.0.1",

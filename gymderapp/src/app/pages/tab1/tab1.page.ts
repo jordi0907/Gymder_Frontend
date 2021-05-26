@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from 'src/app/services/posts.service';
 import { Socket } from 'ngx-socket-io';
 import { Usuario } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -9,27 +10,26 @@ import { UsuarioService } from 'src/app/services/usuario.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-   
-  usuario: Usuario = {};
+
+  usuario1: Usuario;
 
 
 
 
   constructor(
     private socket:Socket,
-    private usuarioService: UsuarioService
-    ) 
-    {
-      this.usuario=usuarioService.getUsuario();
-     
-    }
+    private usuarioService1: UsuarioService
+    ) {}
 
   ngOnInit() {
 
-    
-  this.usuario=this.usuarioService.getUsuario();
-  console.log("kevinAlcalde",this.usuario);
-   
+
+
+    //console.log("Esta todo bien");
+  }
+
+  logout() {
+
   }
 
  
