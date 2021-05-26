@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
   @ViewChild('slidePrincipal') slides: IonSlides;
   loginForm: FormGroup;
   registerForm: FormGroup;
+  SocialAuthService: SocialAuthService;
 
   
 
