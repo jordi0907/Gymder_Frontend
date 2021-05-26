@@ -1,0 +1,42 @@
+
+
+
+.img-avatar {
+    width: 150px;
+  }
+  
+  .top-20 {
+    margin-top: 20px;
+  }
+  
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  
+  img {
+    width: 120px;
+  }
+  
+  .pick-avatar {
+    width: 80px;
+    opacity: 0.3;
+  }
+  
+  .pick-avatar-seleccionado {
+    transition: opacity 0.5s linear;
+    opacity: 1 !important;
+  }
+  
+  .btn_eye_icon{
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    background: transparent;
+    ion-icon{
+        font-size: 22px;
+        color:#757575;
+    }
+  }
+  

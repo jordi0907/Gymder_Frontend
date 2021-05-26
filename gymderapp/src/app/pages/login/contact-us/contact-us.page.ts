@@ -40,6 +40,11 @@ export class ContactUsPage implements OnInit {
       console.log(err.status)
 
     })
+
+    this.subject= '';
+    this.body= '';
+    this.to= '';
+  
    
   }
 
