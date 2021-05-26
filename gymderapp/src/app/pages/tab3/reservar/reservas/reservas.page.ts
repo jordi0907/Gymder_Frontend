@@ -2,6 +2,7 @@ import { ReservarService } from 'src/app/services/reservar.service';
 import { Component, OnInit } from '@angular/core';
 import {Sala} from 'src/app/interfaces/interfaces'
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservas',
@@ -15,11 +16,11 @@ export class ReservasPage implements OnInit {
 
   constructor(
     private reservarService: ReservarService,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private router: Router) { }
 
   ngOnInit() {
     this.reservarService.getReservas().subscribe((reservas :any) =>{
-      console.log(reservas)
       if(reservas['ok']==true){
         this.mostrar = true;
         this.reservas = reservas['reservas'];
@@ -28,6 +29,9 @@ export class ReservasPage implements OnInit {
         this.mensaje= reservas['mensaje']
       }
       })
+  }
+  ionViewWillEnter(){
+    this.ngOnInit();
   }
 
   async presentAlertConfirm(id) {
@@ -53,6 +57,11 @@ export class ReservasPage implements OnInit {
     this.reservarService.deleteReserva(id).subscribe(async data =>{
       this.ngOnInit();
     })
+  }
+
+  sendData(data){
+    this.reservarService.setNavData(data);
+    this.router.navigate(['/main/tabs/tab3/reservar/reservas/sala/'+data._id])
   }
 
 }

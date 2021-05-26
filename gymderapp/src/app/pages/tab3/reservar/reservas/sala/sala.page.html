@@ -1,0 +1,49 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sala {{data.actividad}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+
+</ion-content>
+-->
+  <ion-header>
+    <ion-toolbar mode="ios">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-menu-button id="main-content" >
+            <ion-icon name="people-outline">
+            </ion-icon>
+          </ion-menu-button>
+        </ion-buttons>
+        <ion-title>Sala {{data.actividad}}</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+<ion-menu side="end" content-id="main-content">
+  <ion-header>
+    <ion-toolbar translucent>
+      <ion-title>Inscritos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list *ngFor="let user of data.inscritos">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="/assets/avatars/{{user.avatar}}">
+        </ion-avatar>
+        <ion-label>
+          <h2>{{user.username}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

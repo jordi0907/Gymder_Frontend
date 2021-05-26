@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar mode="ios">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content *ngIf="mostrar">
-  <ion-list *ngFor="let reserva of reservas">
-  <ion-item>
+  <ion-list *ngFor="let reserva of reservas" >
+    <ion-item (click)="sendData(reserva)">
     <ion-card-header>
       <ion-card-subtitle>{{reserva.name}}</ion-card-subtitle>
       <ion-card-title>{{reserva.actividad}}</ion-card-title>

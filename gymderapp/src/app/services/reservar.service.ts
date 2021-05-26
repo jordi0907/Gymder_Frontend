@@ -4,13 +4,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { isNullOrUndefined } from 'util';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReservarService {
-
+  navData:any;
   constructor(private http: HttpClient) { }
 
   getSalas():Observable<any>{
@@ -34,5 +35,12 @@ export class ReservarService {
   }
   deleteSala(id: String):Observable<any>{ //Eliminar Sala
     return this.http.delete(environment.url+ '/sala/'+ id);
+  }
+  setNavData(obj){
+    this.navData= obj;
+  }
+  getNavData(){
+    if(this.navData === null || this.navData === undefined) return 0;
+    return this.navData;
   }
 }
