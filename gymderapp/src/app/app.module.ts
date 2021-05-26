@@ -45,7 +45,8 @@ const config: SocketIoConfig = { url: environment.url, options: {} };
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-            '437622529280-mdptj4e66a56keulbubuo51ar4poknin.apps.googleusercontent.com'
+            // '437622529280-mdptj4e66a56keulbubuo51ar4poknin.apps.googleusercontent.com'
+            '878362167223-1je2q95nveo0b3ips163pve8ur935baf.apps.googleusercontent.com'
             ),
           },
         ],
