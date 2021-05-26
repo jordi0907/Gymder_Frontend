@@ -41,16 +41,10 @@ export class PrivchatPage implements OnInit {
       console.log('mi numero de sala es: invitador ' + this.nsala); 
     });  
     
-    this.socket.on('mensajeSala', (data, data2) => {
+    this.socket.on('mensajeSala', (data) => {
       console.log ("mensajes fin", data);
-      console.log ("nº de sala fin", data2)
-      if(data2 == this.nsala){
       this.mensajesPrivado.push(data);
       console.log("lista mensajes privados", this.mensajesPrivado);
-      }
-      else {
-        console.log("no son iguales")
-      }
     })
     
   }
