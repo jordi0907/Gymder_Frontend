@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+  <ion-toolbar>
+    <ion-title>contact-us</ion-title>
+  </ion-toolbar>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div padding>
+    <ion-item>
+      <ion-label color="primary" stacked>Subject</ion-label>
+      <ion-input [(ngModel)]="subject" type="text" placeholder = "Type your subject"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>Body Content</ion-label>
+      <ion-input [(ngModel)]="body" type="text" placeholder = "Type your Content"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" stacked>To</ion-label>
+      <ion-input [(ngModel)]="to" type="text" placeholder = "To"></ion-input>
+    </ion-item>
+    <button ion-button block (click) = "send()">send</button>
+  </div>
+
+</ion-content>
