@@ -21,7 +21,8 @@ export class ContactUsPage implements OnInit {
   to= '';
 
   constructor(public navCtrl : NavController,
-              private usuarioService: UsuarioService
+              private usuarioService: UsuarioService,
+              public alerta:AlertController
               ) { }
 
 
@@ -33,13 +34,35 @@ export class ContactUsPage implements OnInit {
     this.mensajeContacto.subject = this.subject;
 
     console.log('este es el mensaje creado', this.mensajeContacto);
+
+    if (this.mensajeContacto.to != "" || this.mensajeContacto.bodyContent != "" || this.mensajeContacto.subject != ""){
+     
+      this.alertaCorrecto();
+
     this.usuarioService.contactUs(this.mensajeContacto).subscribe (data =>{
+      
       
     }, 
     err => {
       console.log(err.status)
 
     })
+     
+    
+
+  }
+
+  else {
+    this.alertaError();
+  }
+
+
+
+
+    this.subject= '';
+    this.body= '';
+    this.to= '';
+  
    
   }
 
@@ -48,4 +71,34 @@ export class ContactUsPage implements OnInit {
   ngOnInit() {
   }
 
+  async alertaCorrecto(){ 
+   const miAlerta = await this.alerta.create({
+    header: 'Se ha enviado Correctamente!!',
+    subHeader: '',
+    message: '',
+    buttons: [ {text:'OK',
+                 handler: () => {
+                  this.navCtrl.navigateRoot('/login', {animated: true});
+                 }}
+                      ]
+   });
+
+  await miAlerta.present();
+  
+  
+ 
+ }
+
+ async alertaError(){ 
+  const alertaerror = await this.alerta.create({
+   header: 'Te faltan rellenar campos',
+   subHeader: '',
+   message: '',
+   buttons: ['OK']
+  });
+
+ await alertaerror.present();
+
+
+}
 }

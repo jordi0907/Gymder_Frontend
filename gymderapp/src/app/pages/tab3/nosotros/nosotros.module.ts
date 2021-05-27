@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ChatPrivadoPageRoutingModule } from './chat-privado-routing.module';
+import { NosotrosPageRoutingModule } from './nosotros-routing.module';
 
-import { ChatPrivadoPage } from './chat-privado.page';
+import { NosotrosPage } from './nosotros.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPrivadoPageRoutingModule
+    NosotrosPageRoutingModule
   ],
-  declarations: [ChatPrivadoPage]
+  declarations: [NosotrosPage]
 })
-export class ChatPrivadoPageModule {}
+export class NosotrosPageModule {}
