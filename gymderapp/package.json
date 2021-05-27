@@ -28,6 +28,8 @@
     "@types/socket.io": "^2.1.13",
     "angularx-social-login": "^3.5.7",
     "firebase": "^8.4.3",
+    "ion2-calendar": "^3.0.0-rc.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "socket.io": "^4.0.1",
     "tslib": "^2.0.0",
