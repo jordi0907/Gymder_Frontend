@@ -5,8 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HorariosPageRoutingModule } from './horarios-routing.module';
-import { CalendarModule } from 'ion2-calendar';
+
+import { NgCalendarModule } from 'ionic2-calendar';
 import { HorariosPage } from './horarios.page';
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
 
 @NgModule({
   imports: [
@@ -14,7 +19,7 @@ import { HorariosPage } from './horarios.page';
     FormsModule,
     IonicModule,
     HorariosPageRoutingModule,
-    CalendarModule
+    NgCalendarModule
   ],
   declarations: [HorariosPage],
   providers: [{ provide: LOCALE_ID, useValue: 'es-ES' }]

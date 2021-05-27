@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
   {
+    path: 'nosotros',
+    loadChildren: () => import('./nosotros/nosotros.module').then( m => m.NosotrosPageModule)
+  },
+  {
     path: 'horarios',
     loadChildren: () => import('./horarios/horarios.module').then( m => m.HorariosPageModule)
   }
