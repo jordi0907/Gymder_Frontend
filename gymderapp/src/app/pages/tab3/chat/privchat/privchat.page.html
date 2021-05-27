@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Chat privado</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-card>
+  <br/>
+  <input type="text" [(ngModel)]="texto"  placeholder="Tu mensaje..." />
+  <input type="button" (click)="AddM()" value="Enviar!"/>
+</ion-card>
+<ion-content>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-card>
+        <ion-item *ngFor="let item of listaUser" >
+          <ion-item onclick="NombreEnviar">
+            <name value= {{item}} id="name"></name> 
+            <ion-avatar slot="start">
+            </ion-avatar>
+          <ion-label>
+          {{item.username}}
+          </ion-label>
+        </ion-item>       
+        </ion-item>
+      </ion-card>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-menu side="start" menuId="custom" contentId="main" class="my-custom-menu">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Lista Conectados</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-card>
+  <ion-item *ngFor="let item of listaUser" >
+  
+    <ion-avatar slot="start">
+      <ion-img ></ion-img>
+    </ion-avatar>
+    <ion-label>
+    {{item.username}}
+    </ion-label>
+  
+  </ion-item>
+</ion-card>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-menu side="end" type="push" contentId="main">
+    <ion-header>
+      <ion-toolbar color="danger">
+        <ion-title>End Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-card>
+        <ion-item *ngFor="let item of listaUser" >
+          
+          <ion-avatar slot="start">
+            <ion-img ></ion-img>
+          </ion-avatar>
+          <ion-label>
+          {{item.username}}
+          </ion-label>
+        
+        </ion-item>
+      </ion-card>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-router-outlet id="main"></ion-router-outlet>
+  <ion-card>
+    <ion-card-content>
+      <ion-list  >
+        <ion-item *ngFor="let item of mensajesPrivado ">    
+          <ion-label>
+          {{item}}
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

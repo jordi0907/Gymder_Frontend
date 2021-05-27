@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ChatPage
+  },  {
+    path: 'privchat',
+    loadChildren: () => import('./privchat/privchat.module').then( m => m.PrivchatPageModule)
   }
+
 ];
 
 @NgModule({

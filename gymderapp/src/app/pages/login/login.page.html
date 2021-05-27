@@ -40,6 +40,26 @@
               </ion-button>
             </ion-col>
           </ion-row>
+          <p>
+            <a (click)="recuperarPassword()">Recuperar Contraseña</a>
+          </p>
+          <br>
+          <div style="text-align: center;">
+            <br>
+            <h4>
+              Iniciar Sesión con  Redes Sociales
+            </h4>
+            <p>
+            <ion-button shape="round" color="danger" (click)="loginGoogle()">
+              <ion-icon name="logo-google"></ion-icon>
+              GOOGLE
+            </ion-button>
+            <!-- <ion-button shape="round" color="primary" (click)="loginFacebook()">
+              <ion-icon name="logo-facebook"></ion-icon>
+              FACEBOOK
+            </ion-button> -->
+            </p>
+          </div>
         </ion-grid>
       </form>
     </ion-slide>
@@ -165,6 +185,21 @@
           Registrarme
         </ion-button>
       </ion-col>
+      <ion-col>
+        <ion-button
+          shape="round"
+          expand="full"
+          size="small"
+          fill="outline"
+          color="tertiary"
+          (click)="contactUs()"
+        >
+          Constact Us
+        </ion-button>
+      </ion-col>
+
+
+
     </ion-row>
   </ion-toolbar>
 </ion-footer>

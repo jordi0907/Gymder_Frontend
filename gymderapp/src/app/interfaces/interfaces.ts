@@ -32,3 +32,10 @@ export interface Sala {
   horario?: string;
   maxInscritos?: number;
 };
+
+export interface MensajeContacto {
+  subject?: string;
+  bodyContent?: string;
+  to?: string;
+
+};
