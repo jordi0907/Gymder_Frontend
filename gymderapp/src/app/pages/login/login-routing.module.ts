@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: LoginPage
+  },
+  {
+    path: 'contact-us',
+    loadChildren: () => import('./contact-us/contact-us.module').then( m => m.ContactUsPageModule)
   }
+
 ];
 
 @NgModule({

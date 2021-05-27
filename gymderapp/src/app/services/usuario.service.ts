@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
+import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
@@ -34,6 +35,8 @@ export class UsuarioService {
     const storage2 = await this.storage.create();
     this.storage = storage2;
   }
+
+  
 
   login(email: string, password: string) {
     const data = { email, password };
@@ -131,6 +134,17 @@ export class UsuarioService {
   getUsername(){
     return this.usuario.username;
   }
+  
+contactUs(mensajeContacto : MensajeContacto): Observable<any>{
+  return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
+
+}
+
+
+
+
+  
+
 
 
 

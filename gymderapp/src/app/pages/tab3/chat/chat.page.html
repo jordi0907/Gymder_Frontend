@@ -9,7 +9,7 @@
 <ion-card>
   <br/>
   <input type="text" [(ngModel)]="texto"  placeholder="Tu mensaje..." />
-  <input type="button" (click)="AddM()" value="Enviar!"/>
+  <input type="button" (click)="AddM()" value="Enviar!" clearInput/>
 </ion-card>
 <ion-content>
   <ion-menu side="start" menuId="first" contentId="main">
@@ -22,14 +22,12 @@
       <ion-list>
         <ion-card>
         <ion-item *ngFor="let item of listaUser" >
-          
-          <ion-avatar slot="start">
-            <ion-img ></ion-img>
-          </ion-avatar>
+            <name value= {{item}} id="name"></name> 
+            <ion-avatar slot="start">
+            </ion-avatar>
           <ion-label>
           {{item.username}}
-          </ion-label>
-        
+          </ion-label>       
         </ion-item>
       </ion-card>
       </ion-list>
@@ -45,20 +43,17 @@
     <ion-content>
       <ion-list>
         <ion-card>
-  <ion-item *ngFor="let item of listaUser" >
-  
-    <ion-avatar slot="start">
-      <ion-img ></ion-img>
-    </ion-avatar>
-    <ion-label>
-    {{item.username}}
-    </ion-label>
-  
-  </ion-item>
-</ion-card>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+          <ion-item *ngFor="let item of listaUser" (click) = "NombreEnviar(item.username)" >
+            <ion-avatar slot="start">
+            </ion-avatar>
+             <ion-label>
+              {{item.username}}
+             </ion-label>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+ </ion-menu>
   
   <ion-menu side="end" type="push" contentId="main">
     <ion-header>
@@ -69,8 +64,7 @@
     <ion-content>
       <ion-list>
         <ion-card>
-        <ion-item *ngFor="let item of listaUser" >
-          
+        <ion-item *ngFor="let item of listaUser" [routerLink] ="['/privchat']" >
           <ion-avatar slot="start">
             <ion-img ></ion-img>
           </ion-avatar>
