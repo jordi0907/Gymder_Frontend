@@ -16,6 +16,11 @@ const routes: Routes = [
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   },
   {
+    path: 'createpost',
+    loadChildren: () => import('./createpost/createpost.module').then( m => m.CreatepostPageModule)
+
+  },
+  {
     path: 'nosotros',
     loadChildren: () => import('./nosotros/nosotros.module').then( m => m.NosotrosPageModule)
   },
