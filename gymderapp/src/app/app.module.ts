@@ -19,6 +19,7 @@ import {
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 const config: SocketIoConfig = { url: environment.url, options: {} };
 
 @NgModule({
@@ -35,6 +36,7 @@ const config: SocketIoConfig = { url: environment.url, options: {} };
     SocialLoginModule
   ],
   providers: [
+    Geolocation,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
