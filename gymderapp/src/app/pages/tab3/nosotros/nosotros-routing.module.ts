@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: NosotrosPage
+  },
+  {
+    path: 'integrante-detail',
+    loadChildren: () => import('./integrante-detail/integrante-detail.module').then( m => m.IntegranteDetailPageModule)
   }
 ];
 

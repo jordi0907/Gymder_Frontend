@@ -14,9 +14,22 @@ const routes: Routes = [
   {
     path: 'chat',
     loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
-  },  {
+  },
+  {
     path: 'nosotros',
-    loadChildren: () => import('./nosotros/nosotros.module').then( m => m.NosotrosPageModule)
+    children: [
+      {
+        path:"",
+        loadChildren: () => import('./nosotros/nosotros.module').then( m => m.NosotrosPageModule)
+      },
+      {
+        path: ":integranteId",
+        loadChildren: () =>
+          import("./nosotros/integrante-detail/integrante-detail.module").then(
+            m => m.IntegranteDetailPageModule
+          )
+      }
+    ]
   }
 
 ];
