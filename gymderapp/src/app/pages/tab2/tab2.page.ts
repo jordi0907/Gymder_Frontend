@@ -30,6 +30,9 @@ export class Tab2Page implements OnInit{
     if(this.visible){
       console.log("dentro",  this.visible )
       this.cargandoGeo = true;
+
+
+    setTimeout(() =>{
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
@@ -50,7 +53,7 @@ export class Tab2Page implements OnInit{
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXBwZ3ltZGVyIiwiYSI6ImNrcDM0MWgyejA3ZDAyb3M1Mm15dHYzb3QifQ.tphsTtpXwlkG2D130LDEWw';
     const map = new mapboxgl.Map({
-      container:   'map',
+      container:   'map2',
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [ lng, lat ],
       zoom: 12
@@ -85,6 +88,8 @@ export class Tab2Page implements OnInit{
        console.log('Error getting location', error);
        this.cargandoGeo = false;
      });
+
+    },200);
 
      //this.visible= false;
 
