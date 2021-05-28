@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-nosotros',
-  templateUrl: './nosotros.page.html',
-  styleUrls: ['./nosotros.page.scss'],
+import { Injectable } from '@angular/core';
+import {Integrante} from './integrante.model'
+@Injectable({
+  providedIn: 'root'
 })
-export class NosotrosPage implements OnInit {
+export class NosotrosService {
 
-  private equipo = [
+
+
+  private equipo: Integrante [] = [
     {
       id: '1',
       nombre: 'Carlos García',
@@ -29,7 +29,7 @@ export class NosotrosPage implements OnInit {
     {
       id: '4',
       nombre: 'Miguel Rincón',
-      correo: 'luis.martin.estrana@estudiantat.upc.edu',
+      correo: 'miguel.angel.rincon@estudiantat.upc.edu',
       img: 'assets/miguel.png'
     },
     {
@@ -47,12 +47,22 @@ export class NosotrosPage implements OnInit {
   ]
 
 
-
-
-
   constructor() { }
 
-  ngOnInit() {
+
+  getIntegrante () {
+
+    return [...this.equipo] 
+
   }
 
+  getIntegranteId(integranteId: string){
+
+  return {
+    ...this.equipo.find(integrante=>{
+      return integrante.id === integranteId
+    } )
+  }
+
+  }
 }
