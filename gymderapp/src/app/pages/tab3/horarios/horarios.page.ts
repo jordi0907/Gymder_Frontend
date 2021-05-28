@@ -103,8 +103,8 @@ export class HorariosPage implements OnInit {
         console.log("out")
       }
     })
-    
-    
+
+
 
   }
 
@@ -133,7 +133,7 @@ export class HorariosPage implements OnInit {
       header: event.title,
       subHeader: event.desc,
       message: 'From: ' + start + '<br><br>To: ' + end,
-      buttons: ['OK'],      
+      buttons: ['OK'],
     });
     alert.present();
   }
