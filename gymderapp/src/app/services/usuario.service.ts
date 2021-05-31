@@ -40,7 +40,8 @@ export class UsuarioService {
 
   login(email: string, password: string) {
     const data = { email, password };
-
+    console.log(URL)
+    
     return new Promise((resolve, reject) => {
       this.http.post(`${URL}/auth/signin`, data).subscribe(
         (resp) => {
