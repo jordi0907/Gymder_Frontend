@@ -27,6 +27,7 @@ export interface Usuario {
 
 export interface Sala {
   name?: string;
+  _id?: string;
   actividad?: string;
   admin?: string;
   horario?: string;
