@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 @Component({
   selector: 'app-createpost',
   templateUrl: './createpost.page.html',
@@ -9,13 +11,14 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class CreatepostPage implements OnInit {
   tempImages: string[] = [];
+  cargandoGeo = false;
   post = {
     mensaje: '',
     coords: null,
     posicion: false,
   };
 
-  constructor(private postService: PostsService, private router: Router) {}
+  constructor(private postService: PostsService, private router: Router, private geolocation: Geolocation) {}
 
   ngOnInit() {}
 
@@ -37,4 +40,66 @@ export class CreatepostPage implements OnInit {
       }
     );
   }
+
+  getGeo(){
+    if( !this.post.posicion ){
+      this.post.coords = null;
+      return;
+    }
+
+    this.cargandoGeo = true;
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // resp.coords.latitude
+      // resp.coords.longitude
+      this.cargandoGeo = false;
+
+      const coords = `${ resp.coords.latitude},${ resp.coords.longitude }`;
+      console.log(coords);
+      this.post.coords = coords;
+     }).catch((error) => {
+       console.log('Error getting location', error);
+       this.cargandoGeo = false;
+     });
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
