@@ -58,6 +58,7 @@ export class ChatPage implements OnInit {
       if(data == this.usuario.username){
       console.log("quieres recibir invitacion?"); 
       this.Invit();
+      console.log('holi')
       }
 
     }); 
