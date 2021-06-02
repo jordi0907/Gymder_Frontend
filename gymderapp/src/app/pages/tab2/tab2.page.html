@@ -7,6 +7,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Donde estan los GYMDERS</ion-label>
 
+      <ion-spinner name="lines-small"
+                  *ngIf="cargandoGeo"></ion-spinner>
+      <ion-toggle slot="end"
+      [(ngModel)]="posicion"
+      (ionChange)= "getGeo()"
+                  ></ion-toggle>
+    </ion-item>
+  </ion-list>
 
+  <div id="map2" #mapa *ngIf="visible"></div>
 </ion-content>
