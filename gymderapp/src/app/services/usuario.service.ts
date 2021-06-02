@@ -36,12 +36,12 @@ export class UsuarioService {
     this.storage = storage2;
   }
 
-  
+
 
   login(email: string, password: string) {
     const data = { email, password };
     console.log(URL)
-    
+
     return new Promise((resolve, reject) => {
       this.http.post(`${URL}/auth/signin`, data).subscribe(
         (resp) => {
@@ -135,7 +135,7 @@ export class UsuarioService {
   getUsername(){
     return this.usuario.username;
   }
-  
+
 contactUs(mensajeContacto : MensajeContacto): Observable<any>{
   return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
 
@@ -143,8 +143,25 @@ contactUs(mensajeContacto : MensajeContacto): Observable<any>{
 
 
 
+getAllUsers(): Observable<any>{
+  return this.http.get(environment.url + '/user/all');
+}
 
-  
+deleteUserId(usuarioId): Observable<any>{
+  return this.http.delete(environment.url + '/user/delete/'+ usuarioId);
+}
+
+getUserUsername(username): Observable<any>{
+  return this.http.get(environment.url + '/user/' + username);
+}
+
+updateUserGym(usuarioId, username): Observable<any>{
+  return this.http.put(environment.url + '/user/update/updateuser/' + usuarioId, username);
+}
+
+
+
+
 
 
 

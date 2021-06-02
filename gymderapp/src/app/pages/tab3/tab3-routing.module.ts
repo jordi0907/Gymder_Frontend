@@ -27,7 +27,16 @@ const routes: Routes = [
   {
     path: 'horarios',
     loadChildren: () => import('./horarios/horarios.module').then( m => m.HorariosPageModule)
+  },
+  {
+    path: 'gymdertent',
+    loadChildren: () => import('./gymdertent/gymdertent.module').then( m => m.GymdertentPageModule)
+  },
+  {
+    path: 'gymdertentmod/:id',
+    loadChildren: () => import('./gymdertentmod/gymdertentmod.module').then( m => m.GymdertentmodPageModule)
   }
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

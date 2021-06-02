@@ -51,13 +51,12 @@
           </ion-card>
         </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf ="admin">
       <ion-col col-12>
-        <ion-card class = "ion-text-center" padding color="primary">
+        <ion-card  class = "ion-text-center" padding color="primary" routerLink="/main/tabs/tab3/gymdertent" routerDirection="forward">
           <ion-icon name="heart-half-outline"></ion-icon>
-          <h2>Gymder de las tentaciones</h2>
+          <h2>Configuracion de la cuenta</h2>
           <!-- <h2>Personal Trainer</h2> -->
-          <h2>Premium</h2>
         </ion-card>
       </ion-col>
     </ion-row>

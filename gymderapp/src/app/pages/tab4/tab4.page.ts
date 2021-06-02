@@ -93,6 +93,14 @@ export class Tab4Page implements OnInit {
         'Cambiar contraseña aquí',
         [Validators.required],
       ],
+      notificaciones: [
+        this.usuario.notificaciones,
+        [Validators.required, Validators.nullValidator],
+      ],
+      privacidad: [
+        this.usuario.privacidad,
+        [Validators.required, Validators.nullValidator],
+      ],
     },{validator: Validator.checkPassword});
   }
 
@@ -114,7 +122,9 @@ export class Tab4Page implements OnInit {
       username: this.editarPerfilForm.value.nombre,
       email: this.editarPerfilForm.value.email,
       password: this.passwordDefecto,
-      avatar:  this.registerUser.avatar || this.usuario.avatar
+      avatar:  this.registerUser.avatar || this.usuario.avatar,
+      notificaciones: this.editarPerfilForm.value.notificaciones,
+      privacidad: this.editarPerfilForm.value.privacidad,
     }
     console.log (userRegistered);
     this.usuarioService.updatePerfil(userRegistered).subscribe( data =>{

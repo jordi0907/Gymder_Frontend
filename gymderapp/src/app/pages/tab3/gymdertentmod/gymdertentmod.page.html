@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Configuracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  [formGroup]="editarPerfilForm" *ngIf="usuario">
+    <ion-row>
+      <ion-col>
+
+          <ion-list>
+
+            <ion-item>
+              <ion-label color = "primary">Email</ion-label>
+              <ion-input name="email"
+                         type="email"
+                         formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label color = "primary">Nombre</ion-label>
+              <ion-input name="nombre"
+                         type="text"
+                         formControlName="nombre"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label color = "primary">Avatar</ion-label>
+              <ion-input name="avatar"
+                         type="text"
+                         formControlName="avatar"></ion-input>
+            </ion-item>
+
+
+
+            <ion-item>
+              <ion-label position="floating" color="primary">Privacidad*</ion-label>
+              <ion-select formControlName="privacidad" placeholder="Selecciona una privacidad">
+                <ion-select-option value="public">Público</ion-select-option>
+                <ion-select-option value="private">Privado</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+
+            <ion-item>
+              <ion-label position="floating" color="primary">Notificaciones*</ion-label>
+              <ion-select formControlName="notificaciones" placeholder="Selecciona una opcion">
+                <ion-select-option value="habilitar">Habilitar</ion-select-option>
+                <ion-select-option value="deshabilitar">Deshabilitar</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+
+            <ion-item>
+              <ion-label position="floating" color="primary">Autenticar*</ion-label>
+              <ion-select formControlName="autenticar" placeholder="Selecciona una manera de Autenticar">
+                <ion-select-option value="1paso">Autenticar en 1 paso</ion-select-option>
+                <ion-select-option value="2paso">Autenticar en 2 paso</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+
+
+
+
+          </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button type="submit"
+                    color="tertiary"
+                    shape="round"
+                    (click) = "actualizar(usuario._id)">
+        Actualizar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</form>
+
+</ion-content>

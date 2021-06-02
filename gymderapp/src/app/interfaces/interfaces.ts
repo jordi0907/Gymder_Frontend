@@ -22,6 +22,9 @@ export interface Usuario {
   email?: string;
   password?: string;
   role?: number;
+  privacidad?: string;
+  notificaciones?: string;
+  autenticar?: string;
   salas?: Sala[]
 }
 

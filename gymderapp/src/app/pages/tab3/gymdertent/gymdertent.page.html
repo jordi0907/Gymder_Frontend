@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  <!--   <ion-buttons slot="end">
+      <ion-button  *ngIf ="admin" size="small" color="tertiary" routerLink="/main/tabs/tab3/crearuserg" >Crear Usuario</ion-button>
+    </ion-buttons> -->
+    <ion-title>Configuracion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  *ngIf ="admin">
+  <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+<ion-grid fixed>
+  <ion-row>
+    <ion-col sixe = "12" size-lg="3" size-md="4" sixe-sm="6" size-xs="12" *ngFor="let usuario of usuarios">
+      <div class="post">
+      <ion-item lines="none">
+      <!--   <ion-avatar slot="start">
+          <img src="/assets/avatars/{{ usuario.avatar }}">
+        </ion-avatar> -->
+        <ion-label>
+          <h3>
+            {{ usuario.username }}
+          </h3>
+          <h5>
+            {{ usuario.email }}
+          </h5>
+          <img src="/assets/avatars/{{ usuario.avatar }}">
+        </ion-label>
+
+      </ion-item>
+      <ion-button expand="full"
+      shape="round"
+      (click)="alertaDeleteUser(usuario)"
+      >
+      <ion-icon slot="start" name="trash-outline" ></ion-icon >
+      Eliminar
+      </ion-button>
+      <ion-button expand="full"
+      shape="round"
+      [routerLink]="['/main/tabs/tab3/gymdertentmod', usuario.username]"
+      >
+      <ion-icon  slot="start" name="build-outline"  ></ion-icon>
+      Actualizar
+      </ion-button>
+    </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+</ion-content>
