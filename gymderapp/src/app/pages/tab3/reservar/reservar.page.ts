@@ -18,7 +18,7 @@ export class ReservarPage implements OnInit {
   mostrar: boolean = false;
   mensaje: String;
   usuario: Usuario ={};
-  contReserva= 0;
+  contReserva= 1;
   constructor(
     private reservarService: ReservarService,
     private usuarioService: UsuarioService,
@@ -54,15 +54,16 @@ export class ReservarPage implements OnInit {
   }
 
   reservar(idSala:String){
-    
+    console.log(this.contReserva)
     this.reservarService.addReserva(idSala, this.usuario).subscribe(data =>{
       if(data['ok']==false) this.presentAlertConfirm(data['mensaje']);
-      this.contReserva++;
-      if(this.contReserva ==5){
-        this.socket.emit('insignias', (this.usuarioService.getUsuario, "Reserva 5 clases"))
-      }
-
+      else this.contReserva++;
     });
+    console.log("Aqui "+this.contReserva);
+    if(this.contReserva ==2){
+      this.usuarioService.putInsignias("Reserva 2 clases").subscribe(data=>{});
+    }
+
   }
 
   deleteSala(id){

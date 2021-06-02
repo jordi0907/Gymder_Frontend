@@ -145,6 +145,13 @@ getInsignias(){
   return this.http.get(environment.url+'/auth/insignias');
 
 }
+putInsignias(insignia: string){
+  let body={
+    "insignia": insignia
+  }
+  return this.http.put(environment.url+'/auth/insignias',body);
+
+}
 
 
 
