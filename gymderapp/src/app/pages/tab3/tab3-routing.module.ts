@@ -30,7 +30,11 @@ const routes: Routes = [
           )
       }
     ]
+  },  {
+    path: 'estadisticas',
+    loadChildren: () => import('./estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
   }
+
 
 ];
 

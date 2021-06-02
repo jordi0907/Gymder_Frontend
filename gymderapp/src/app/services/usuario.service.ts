@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { mensajeSala, Usuario } from '../interfaces/interfaces';
 import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
@@ -138,6 +138,14 @@ export class UsuarioService {
 contactUs(mensajeContacto : MensajeContacto): Observable<any>{
   return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
 
+}
+
+allUsers(){
+  return this.http.get<Usuario[]>(environment.url + '/user/all');
+}
+
+allSalas(){
+  return this.http.get<mensajeSala>(environment.url + '/sala/all');
 }
 
 

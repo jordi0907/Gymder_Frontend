@@ -39,3 +39,7 @@ export interface MensajeContacto {
   to?: string;
 
 };
+
+export interface mensajeSala {
+  salas?: any [];
+}
