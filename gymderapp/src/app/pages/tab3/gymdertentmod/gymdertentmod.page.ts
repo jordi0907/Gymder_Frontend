@@ -69,7 +69,7 @@ export class GymdertentmodPage implements OnInit {
   }
 
   actualizar(userId: String){
-    //if (this.editarPerfilForm.invalid) { return;}
+    if (this.editarPerfilForm.invalid) { return;}
 
     let userRegistered ={
       username: this.editarPerfilForm.value.nombre,
