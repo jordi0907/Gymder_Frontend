@@ -141,11 +141,10 @@ contactUs(mensajeContacto : MensajeContacto): Observable<any>{
 
 }
 
+getInsignias(){
+  return this.http.get(environment.url+'/auth/insignias');
 
-
-
-  
-
+}
 
 
 

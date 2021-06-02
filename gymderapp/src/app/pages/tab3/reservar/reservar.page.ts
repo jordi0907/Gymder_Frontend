@@ -1,3 +1,4 @@
+import { Socket } from 'ngx-socket-io';
 import { Usuario, Post } from './../../../interfaces/interfaces';
 import { UsuarioService } from './../../../services/usuario.service';
 import { ReservarService } from 'src/app/services/reservar.service';
@@ -17,10 +18,12 @@ export class ReservarPage implements OnInit {
   mostrar: boolean = false;
   mensaje: String;
   usuario: Usuario ={};
+  contReserva= 0;
   constructor(
     private reservarService: ReservarService,
     private usuarioService: UsuarioService,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    private socket:Socket) { }
 
   ngOnInit() {
     if(this.usuarioService.getUsuario().role == 1) this.admin=true;
@@ -54,6 +57,11 @@ export class ReservarPage implements OnInit {
     
     this.reservarService.addReserva(idSala, this.usuario).subscribe(data =>{
       if(data['ok']==false) this.presentAlertConfirm(data['mensaje']);
+      this.contReserva++;
+      if(this.contReserva ==5){
+        this.socket.emit('insignias', (this.usuarioService.getUsuario, "Reserva 5 clases"))
+      }
+
     });
   }
 

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>insignias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="mostrar">
+    <ion-list *ngFor="let insignia of insignias">
+      <ion-item>
+        <ion-icon slot="end" name="star"></ion-icon>
+        <ion-label>{{insignia}}</ion-label>
+      </ion-item>
+  </ion-list>
+  </ion-content>
+
+
+<ion-content *ngIf="!mostrar" fullscreen class="ion-padding" scroll-y="false" >
+  <br><br><br><br><br><br><br><br><br>
+<ion-text color="primary">
+  <h1>{{mensaje}}</h1>
+</ion-text>
+</ion-content>
