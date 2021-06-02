@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main/tabs/tab5"></ion-back-button>
+      <ion-title>Examen</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-card>
+  <br/>
+  <input type="text" [(ngModel)]="texto"  placeholder="Tu mensaje..." />
+  <input type="button" (click)="AddM()" value="Enviar!"/>
+</ion-card>
+<ion-content>
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Lista examen</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-card>
+        <ion-card-content>
+          <ion-list  >
+            <ion-item *ngFor="let item of listaMensajes ">    
+              <ion-label>
+              {{item}}
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-content>
+
+  

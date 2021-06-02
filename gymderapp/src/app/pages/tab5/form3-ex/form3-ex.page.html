@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>form3Ex</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  [formGroup]="editarPerfilForm">
+    <ion-row>
+      <ion-col>
+          <ion-list>
+
+            <ion-item>
+              <ion-label color = "primary">Email</ion-label>
+              <ion-input name="email"
+                         type="text"
+                         formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label color = "primary">Nombre</ion-label>
+              <ion-input name="nombre"
+                         type="text"
+                         formControlName="nombre"></ion-input>
+            </ion-item>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+    </form>
+</ion-content>

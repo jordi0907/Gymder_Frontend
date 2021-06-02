@@ -98,6 +98,10 @@ export class UsuarioService {
   forgotPassword(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/forgotpassword', email);
   }
+  examenRoute(nuevoresultado: Usuario): Observable<any>{
+    return this.http.put(environment.url + '/user/examen', nuevoresultado);
+  }
+  
 
    public  isLoggedIn(){
 

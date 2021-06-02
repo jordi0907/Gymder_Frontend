@@ -13,11 +13,8 @@ export class ContactUsPage implements OnInit {
  mensajeContacto: MensajeContacto = {};
 
 
-
-
-
   subject= '';
-  body= '';
+  bodyContent= '';
   to= '';
 
   constructor(public navCtrl : NavController,
@@ -30,7 +27,7 @@ export class ContactUsPage implements OnInit {
   send(){
 
     this.mensajeContacto.to = this.to;
-    this.mensajeContacto.bodyContent = this.body;
+    this.mensajeContacto.bodyContent = this.bodyContent;
     this.mensajeContacto.subject = this.subject;
 
     console.log('este es el mensaje creado', this.mensajeContacto);
@@ -60,7 +57,7 @@ export class ContactUsPage implements OnInit {
 
 
     this.subject= '';
-    this.body= '';
+    this.bodyContent= '';
     this.to= '';
   
    

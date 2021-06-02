@@ -23,6 +23,9 @@ export interface Usuario {
   password?: string;
   role?: number;
   salas?: Sala[]
+  examen?:string[];
+  numero?:string;
+  universidad?:string;
 }
 
 export interface Sala {
