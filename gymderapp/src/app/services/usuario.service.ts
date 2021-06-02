@@ -123,6 +123,11 @@ export class UsuarioService {
 
   }
 
+  delUsuario(id: string) {
+    console.log(id)
+    return this.http.delete(environment.url + '/user/'+ id);
+  }
+
   checkEmail(email: any): Observable<any>{
     return this.http.post(environment.url + '/auth/checkemail', email);
   }

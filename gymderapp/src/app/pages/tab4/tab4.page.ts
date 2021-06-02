@@ -20,6 +20,7 @@ export class Tab4Page implements OnInit {
   iconpassword = "eye-off";
   iconconfirmpassword = "eye-off";
   passwordDefecto: string;
+  toggle: string;
 
   avatars = [
     {
@@ -177,7 +178,29 @@ get formControls(){
   return this.editarPerfilForm.controls;
 }
 
+toggleCom(){
+  this.toggle = "OK"
+  console.log(this.toggle)
+}
 
+//Eliminar usuario
+eliminar() {
+
+  if (this.toggle == "OK"){
+    var id = this.usuario._id
+    console.log(id);
+    this.navCtrl.navigateRoot('/login', { animated: true});
+    this.usuarioService.delUsuario(id)
+      .subscribe(
+        res =>{
+          console.log(res)
+        }
+      )
+  }
+  else{
+    console.log("not confirm");
+  }
+}
 
 
 

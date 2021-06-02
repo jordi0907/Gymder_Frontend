@@ -111,6 +111,24 @@
       </ion-col>
     </ion-row>
 
+    
+    <ion-row>
+      <ion-label color="primary">Confirmación</ion-label>
+      <ion-toggle (ionChange)="toggleCom()"></ion-toggle>
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col text-center>
+        <ion-button type="submit"
+                    color="tertiary"
+                    shape="round"
+                    (click) = "eliminar()">
+        Eliminar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
   </form>
 
 
