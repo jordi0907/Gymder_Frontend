@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { Usuario, Faq } from '../interfaces/interfaces';
 import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
 import { Socket } from 'ngx-socket-io';
+
 
 
 const URL = environment.url;
@@ -17,6 +18,7 @@ const URL = environment.url;
 })
 export class UsuarioService {
   private usuario: Usuario = {};
+  private faq: Faq = {};
 
  token: string = null;
 
@@ -116,6 +118,24 @@ export class UsuarioService {
 
       this.uiService.alertaInformativa('Error en la conexión');
       } )
+  }
+  getFaq2(): void{
+    this.http.get<Faq>(environment.url + '/user/faq').subscribe(data=> {
+      this.faq = data;
+      console.log(this.faq)
+      
+
+    }, err =>{
+
+      this.uiService.alertaInformativa('Error en la conexión');
+      } )
+  }
+  getFaq(){
+    
+    this.getFaq2()
+    console.log(this.faq)
+    return this.faq
+
   }
 
   getUsuario(){
