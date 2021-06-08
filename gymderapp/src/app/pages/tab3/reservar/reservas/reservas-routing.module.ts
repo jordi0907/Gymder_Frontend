@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ReservasPage
+  },  {
+    path: 'chat-reservas',
+    loadChildren: () => import('./chat-reservas/chat-reservas.module').then( m => m.ChatReservasPageModule)
   }
+
 ];
 
 @NgModule({
