@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/interfaces/interfaces';
+import { PostsService } from 'src/app/services/posts.service';
 import { UiServiceService } from 'src/app/services/ui-service.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import {Validator} from '../../interfaces/validator';
@@ -68,6 +69,7 @@ export class Tab4Page implements OnInit {
     private formBuilder: FormBuilder,
     private navCtrl: NavController,
     private UiService: UiServiceService,
+    private postsService: PostsService
   ) {}
   ngOnInit() {
 
@@ -95,6 +97,7 @@ export class Tab4Page implements OnInit {
   }
 
   logout() {
+    this.postsService.paginaPosts = 0;
     this.usuarioService.logout();
   }
 

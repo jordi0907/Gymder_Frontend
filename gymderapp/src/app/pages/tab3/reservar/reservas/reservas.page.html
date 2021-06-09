@@ -13,6 +13,7 @@
     <ion-card-header>
       <ion-card-subtitle>{{reserva.name}}</ion-card-subtitle>
       <ion-card-title>{{reserva.actividad}}</ion-card-title>
+      <input type="button" (click)="irChat(reserva._id)" value="chatear!" />
     </ion-card-header>
     <ion-card-content>
      Horario: {{reserva.horario}} <br>
