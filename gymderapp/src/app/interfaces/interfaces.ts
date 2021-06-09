@@ -39,3 +39,8 @@ export interface MensajeContacto {
   to?: string;
 
 };
+
+export interface SolicitudAmistad {
+  emailAmigo?: string;
+  idInvitador?: string
+}
