@@ -23,7 +23,7 @@ export interface Usuario {
   password?: string;
   role?: number;
   salas?: Sala[];
-  amigos? :String[]
+  amigos? :string[]
 }
 
 export interface Sala {

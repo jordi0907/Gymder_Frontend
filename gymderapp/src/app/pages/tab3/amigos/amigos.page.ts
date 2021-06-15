@@ -12,7 +12,7 @@ export class AmigosPage implements OnInit {
   email = '';
   usuario: Usuario = {};
 
-  amigos: any [];
+  
  
 
   constructor(public usuarioService: UsuarioService,
@@ -75,12 +75,23 @@ export class AmigosPage implements OnInit {
 
     listaAmigos(){
       this.usuario = this.usuarioService.getUsuario();
-      
+      let amigos : any[];
     
      for(let id in this.usuario.amigos){
       
-      console.log(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
+      
      // this.amigos.push(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
+     this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+      console.log(data);
+      amigos.push(data);
+
+    })
+
+
+   
+
+
+
        
      }
     
