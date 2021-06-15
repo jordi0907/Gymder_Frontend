@@ -16,6 +16,7 @@ import { MenuController, ModalController, NavController, AlertController} from '
 export class ChatPage implements OnInit {
 
   usuario: Usuario = {};
+  amigos: Usuario[] = [];
   usuarioEnviar: string;
   texto: string;
   Enviarform : FormGroup;
@@ -41,6 +42,7 @@ export class ChatPage implements OnInit {
   ngOnInit() { 
     this.socket.emit('connection')
     this.socket.emit('me-conecto', this.usuario)
+    this.listaAmigos();
     this.socket.on('listausuarios', (data) => 
     {
       this.listaUser = data;
@@ -98,12 +100,23 @@ export class ChatPage implements OnInit {
 
     await alert.present();
   }
+ 
 
   NombreEnviar(usuarioEnviar) {  //lo usamos en el html 
     console.log(usuarioEnviar)
     this.socket.emit('invitacion', (usuarioEnviar))
     this.navCtrl.navigateRoot('/main/tabs/tab3/chat/privchat');
   }
+  listaAmigos(){
+    this.usuario = this.usuarioService.getUsuario();
+    this.amigos=[];
+     for(let id in this.usuario.amigos){    
+     this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+      console.log(data);
+      this.amigos.push(data);
+    })
+  }
+}
 
 
 }

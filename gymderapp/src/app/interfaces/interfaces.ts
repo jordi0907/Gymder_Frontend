@@ -24,6 +24,7 @@ export interface Usuario {
   role?: number;
   salas?: Sala[];
   amigos? :string[]
+  conectado? :number;
 }
 
 export interface Sala {
