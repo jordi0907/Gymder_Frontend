@@ -11,6 +11,8 @@ export class AmigosPage implements OnInit {
   solicitudAmistad: SolicitudAmistad = {};
   email = '';
   usuario: Usuario = {};
+
+  amigos: any [];
  
 
   constructor(public usuarioService: UsuarioService,
@@ -60,12 +62,29 @@ export class AmigosPage implements OnInit {
     });
   
    await alertaerror.present();
-  
-  
   }
+
+  
+
+
   
 
   ngOnInit() {
-  }
+    this.listaAmigos()  }
+    
 
+    listaAmigos(){
+      this.usuario = this.usuarioService.getUsuario();
+      
+    
+     for(let id in this.usuario.amigos){
+      
+      console.log(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
+     // this.amigos.push(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
+       
+     }
+    
+ 
+   }
+ 
 }

@@ -15,4 +15,17 @@
     </ion-item>
     <ion-button type="submit" expand="block" fill="outline"  (click)= "send()">Añadir</ion-button>
   </div>
+  <div padding>
+    <h1>Amigos</h1>
+  </div>
+<ion-list>
+  <ion-item *ngFor = "let item of amigos" >
+    <ion-avatar slot = "start">
+      <ion-img [src] = "item.avatar"></ion-img>
+    </ion-avatar>
+    <ion-label>
+      {{item.nombre}}
+    </ion-label>
+  </ion-item>
+</ion-list>
 </ion-content>

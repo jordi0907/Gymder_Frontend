@@ -144,6 +144,14 @@ contactUs(mensajeContacto : MensajeContacto): Observable<any>{
 addAmigo(solicitudAmistad: SolicitudAmistad): Observable<any> {
   return this.http.post(environment.url+'/user/addAmigo', solicitudAmistad );
 }  
+ 
+dameAmigo(id: String): Observable<any> {
+  
+  console.log(environment.url+'/user/dameUsuario/'+ id)
+return this.http.get(environment.url+'/user/dameUsuario/'+ id)
+
+
+}
 
 
 
