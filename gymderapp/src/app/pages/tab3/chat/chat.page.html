@@ -70,8 +70,12 @@
           </ion-avatar>
            <ion-label>
             {{item.username}}
-            {{item.conectado}}
-            <ion-icon name="ellipse" color="danger"></ion-icon>
+            <div *ngIf= "item.conectado == 0; else elseBlock">
+              <ion-icon name="ellipse" color="danger"></ion-icon>
+            </div>
+            <ng-template #elseBlock>
+              <ion-icon name="ellipse"></ion-icon>
+            </ng-template>
            </ion-label>
       </ion-item>
     </ion-card>
