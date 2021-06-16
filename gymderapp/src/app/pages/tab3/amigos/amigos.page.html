@@ -21,10 +21,10 @@
 <ion-list>
   <ion-item *ngFor = "let item of amigos" >
     <ion-avatar slot = "start">
-      <ion-img [src] = "item.avatar"></ion-img>
+      <img src = "/assets/avatars/{{item.avatar}}"/>
     </ion-avatar>
     <ion-label>
-      {{item.nombre}}
+      {{item.username}}
     </ion-label>
   </ion-item>
 </ion-list>

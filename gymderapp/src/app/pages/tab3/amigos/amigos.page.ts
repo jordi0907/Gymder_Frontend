@@ -11,9 +11,9 @@ export class AmigosPage implements OnInit {
   solicitudAmistad: SolicitudAmistad = {};
   email = '';
   usuario: Usuario = {};
-
-  
- 
+  amigo: Usuario = {};
+  amigos: Usuario[] = [];
+  avatar:string;
 
   constructor(public usuarioService: UsuarioService,
     public alerta:AlertController) { }
@@ -48,6 +48,7 @@ export class AmigosPage implements OnInit {
 
     
     this.email = '';
+    this.listaAmigos();
 
 
 
@@ -75,7 +76,6 @@ export class AmigosPage implements OnInit {
 
     listaAmigos(){
       this.usuario = this.usuarioService.getUsuario();
-      let amigos : any[];
     
      for(let id in this.usuario.amigos){
       
@@ -83,7 +83,12 @@ export class AmigosPage implements OnInit {
      // this.amigos.push(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
      this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
       console.log(data);
-      amigos.push(data);
+      this.amigo = data;
+      this.avatar = '/assets/avatars/'+this.amigo.avatar;
+
+      this.amigos.push(this.amigo);
+
+      
 
     })
 
