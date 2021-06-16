@@ -2,14 +2,20 @@
 body {
     text-align: center;
     }  
+ion-icon {
+    color:greenyellow;    
+}
+
+
 ion-title {
     font-family:fantasy;
     font-size:150%;
     text-align: center;
     background-color: blanchedalmond;
     }
-    ion-content {
+ion-content {
         background-color: blanchedalmond;
+
     }
  ion-card {
     font-family:Arial, Helvetica, sans-serif;

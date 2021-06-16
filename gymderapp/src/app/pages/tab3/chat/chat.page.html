@@ -48,6 +48,7 @@
             </ion-avatar>
              <ion-label>
               {{item.username}}
+              <ion-icon name="ellipse"></ion-icon>
              </ion-label>
         </ion-item>
       </ion-card>
@@ -55,28 +56,28 @@
   </ion-content>
  </ion-menu>
   
-  <ion-menu side="end" type="push" contentId="main">
-    <ion-header>
-      <ion-toolbar color="danger">
-        <ion-title>End Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-card>
-        <ion-item *ngFor="let item of listaUser" [routerLink] ="['/privchat']" >
+ <ion-menu side="end" menuId="custom2" contentId="main" class="my-custom-menu2">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title>Lista amigos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-card>
+        <ion-item *ngFor="let item of amigos" (click) = "NombreEnviar(item.username)" >
           <ion-avatar slot="start">
-            <ion-img ></ion-img>
           </ion-avatar>
-          <ion-label>
-          {{item.username}}
-          </ion-label>
-        
-        </ion-item>
-      </ion-card>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+           <ion-label>
+            {{item.username}}
+            {{item.conectado}}
+            <ion-icon name="ellipse" color="danger"></ion-icon>
+           </ion-label>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+</ion-menu>
   
   <ion-router-outlet id="main"></ion-router-outlet>
   <ion-card>

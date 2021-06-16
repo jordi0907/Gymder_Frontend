@@ -11,9 +11,10 @@ export class AmigosPage implements OnInit {
   solicitudAmistad: SolicitudAmistad = {};
   email = '';
   usuario: Usuario = {};
-  amigo: Usuario = {};
-  amigos: Usuario[] = [];
-  avatar:string;
+  amigos : Usuario[] = [];
+
+  
+ 
 
   constructor(public usuarioService: UsuarioService,
     public alerta:AlertController) { }
@@ -27,11 +28,8 @@ export class AmigosPage implements OnInit {
     this.solicitudAmistad.idInvitador = this.usuario._id;
     console.log( this.solicitudAmistad );
      
-    this.usuarioService.addAmigo(this.solicitudAmistad).subscribe (response =>{
-      
+    this.usuarioService.addAmigo(this.solicitudAmistad).subscribe (response =>{     
       console.log('respuesta es', response);
-
-
     },
 
     err => {
@@ -39,19 +37,10 @@ export class AmigosPage implements OnInit {
       if (err){
       this.alertaError();
       }
-
-   
-
     }
-
-    )
-
-    
+    )  
     this.email = '';
     this.listaAmigos();
-
-
-
   }
 
   async alertaError(){ 
@@ -71,36 +60,18 @@ export class AmigosPage implements OnInit {
   
 
   ngOnInit() {
-    this.listaAmigos()  }
-    
+    this.listaAmigos()  
+  }
 
     listaAmigos(){
-      this.usuario = this.usuarioService.getUsuario();
-    
-     for(let id in this.usuario.amigos){
-      
-      
-     // this.amigos.push(this.usuarioService.dameAmigo(this.usuario.amigos[id]));
+    this.usuario = this.usuarioService.getUsuario();
+    this.amigos=[];
+     for(let id in this.usuario.amigos){    
      this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
       console.log(data);
-      this.amigo = data;
-      this.avatar = '/assets/avatars/'+this.amigo.avatar;
-
-      this.amigos.push(this.amigo);
-
-      
-
-    })
-
-
-   
-
-
-
-       
+      this.amigos.push(data);
+    }) 
      }
-    
- 
    }
  
 }
