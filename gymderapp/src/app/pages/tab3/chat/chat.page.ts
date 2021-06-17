@@ -25,6 +25,7 @@ export class ChatPage implements OnInit {
   nsala: Number;
   email = '';
   
+  
   constructor(private socket:Socket, 
     private usuarioService: UsuarioService, 
     private navCtrl: NavController, 
@@ -111,17 +112,20 @@ export class ChatPage implements OnInit {
     this.socket.emit('invitacion', (usuarioEnviar))
     this.navCtrl.navigateRoot('/main/tabs/tab3/chat/privchat');
   }
-  listaAmigos(){
+  async listaAmigos(){
     this.usuario = this.usuarioService.getUsuario();
+
     this.amigos=[];
      for(let id in this.usuario.amigos){    
-     this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+    await this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
       console.log(data);
       this.amigos.push(data);
-      this.socket.emit('amigo agregado', this.amigos);
+     
      
     })
   }
+
+  await  this.socket.emit('amigo agregado', this.amigos);
   
 
 }
