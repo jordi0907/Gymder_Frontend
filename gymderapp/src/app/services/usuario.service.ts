@@ -152,6 +152,13 @@ return this.http.get(environment.url+'/user/dameUsuario/'+ id)
 
 
 }
+actualizado(id: String): Observable<any> {
+  
+  console.log(environment.url+'/user/actualizado/'+ id)
+return this.http.get(environment.url+'/user/actualizado/'+ id)
+
+
+}
 
 
 
