@@ -44,15 +44,35 @@ export class ChatPage implements OnInit {
   
 
   ngOnInit() { 
+    for(let id in this.usuario.amigos){    
+      this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+       this.amigos.push(data)
+        })
+  }
     this.socket.emit('connection')
     this.socket.emit('me-conecto', this.usuario)
-    this.listaAmigos();
+    //this.listaAmigos();
     this.socket.on('listausuarios', (data) => 
     {
       this.listaUser = data;
       console.log('la lista de conectados es: ', data ) 
     });
-
+    this.socket.on('refresh', (data) => 
+    {
+      this.usuarioService.dameAmigo(this.usuario._id).subscribe((data) => {
+        console.log(data)
+        this.amigos=[];
+        this.usuario=data;
+        for(let id in this.usuario.amigos){    
+          this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+           this.amigos.push(data)
+            })
+      }
+      console.log("mis amigos en for: ", this.amigos)
+   
+    });
+  });
+  
     this.socket.on('messages', (data) => {
       this.listaMensajes = data;
       console.log("*", this.listaMensajes); 
@@ -69,6 +89,7 @@ export class ChatPage implements OnInit {
     }); 
     this.Enviarform = this.formBuilder.group({});
   }
+  
 
 
   AddM() {   //envio de mensajes
@@ -111,22 +132,25 @@ export class ChatPage implements OnInit {
     this.socket.emit('invitacion', (usuarioEnviar))
     this.navCtrl.navigateRoot('/main/tabs/tab3/chat/privchat');
   }
-  listaAmigos(){
-    this.usuario = this.usuarioService.getUsuario();
-    this.amigos=[];
-     for(let id in this.usuario.amigos){    
-     this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
-      console.log(data);
-      this.amigos.push(data);
-      this.socket.emit('amigo agregado', this.amigos);
-     
-    })
-  }
   
 
-}
+  /*listaAmigos(){
+    this.usuario = this.usuarioService.getUsuario();
+    this.amigos=[];
+    this.usuario.amigos.forEach(function (value){
+      console.log('for each value', value);
+  })
+   /* for(let id in this.usuario.amigos){    
+    this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
+     this.amigos.push(data)
+     console.log("mis amigos en for: ", this.amigos)
+      })
+    }
+    console.log("mis amigos mios: ", this.amigos)
+    this.socket.emit('amigo agregado', this.amigos);
+}*/
 
-send() {
+async send() {
   this.solicitudAmistad.emailAmigo=this.email;
   console.log('este es el email' + this.email);
   this.usuario = this.usuarioService.getUsuario();
@@ -135,22 +159,19 @@ send() {
   this.solicitudAmistad.idInvitador = this.usuario._id;
   console.log( this.solicitudAmistad );
    
-  this.usuarioService.addAmigo(this.solicitudAmistad).subscribe (response =>{     
+  await this.usuarioService.addAmigo(this.solicitudAmistad).subscribe(response => {
     console.log('respuesta es', response);
-    
+    this.socket.emit('miamigo', this.amigos);
   },
 
-  err => {
-    console.log(err);
-    if (err){
-    this.alertaError();
+    err => {
+      console.log(err);
+      if (err) {
+        this.alertaError();
+      }
     }
-  }
   )  
   this.email = '';
-
-
-  
 }
 
 
