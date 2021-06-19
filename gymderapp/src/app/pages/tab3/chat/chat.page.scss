@@ -5,13 +5,22 @@ body {
 ion-icon {
     color:greenyellow;    
 }
-
-
+ion-item{
+    font-family: fantasy;
+    font-size: 120%;
+}
 ion-title {
     font-family:fantasy;
     font-size:150%;
+    color: black;
     text-align: center;
-    background-color: blanchedalmond;
+   // background-color: blanchedalmond;
+    }
+ion-label {
+    font-family:fantasy;
+    font-size:120%;
+    color: black;
+       // background-color: blanchedalmond;
     }
 ion-content {
         background-color: blanchedalmond;
