@@ -28,7 +28,9 @@ export interface Usuario {
   palabra2?: string
   password?: string;
   role?: number;
-  salas?: Sala[]
+  salas?: Sala[];
+  amigos? :string[]
+  conectado? :number;
 }
 
 export interface Sala {
@@ -46,3 +48,8 @@ export interface MensajeContacto {
   to?: string;
 
 };
+
+export interface SolicitudAmistad {
+  emailAmigo?: string;
+  idInvitador?: string
+}
