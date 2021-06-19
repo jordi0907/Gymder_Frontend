@@ -4,7 +4,8 @@ import { Socket } from 'ngx-socket-io';
 import { FormBuilder, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Usuario, SolicitudAmistad } from 'src/app/interfaces/interfaces';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { MenuController, ModalController, NavController, AlertController} from '@ionic/angular';
+import { MenuController, ModalController, NavController, AlertController, IonRefresher} from '@ionic/angular';
+
 
 
 
@@ -21,7 +22,7 @@ export class ChatPage implements OnInit {
   texto: string;
   Enviarform : FormGroup;
   listaMensajes : any[] = [];
-  listaUser:  Usuario [] = [];
+  listaUser:  Usuario [];
   nsala: Number;
   email = '';
   
@@ -51,11 +52,25 @@ export class ChatPage implements OnInit {
   }
     this.socket.emit('connection')
     this.socket.emit('me-conecto', this.usuario)
-    //this.listaAmigos();
     this.socket.on('listausuarios', (data) => 
     {
       this.listaUser = data;
       console.log('la lista de conectados es: ', data ) 
+      for(let id in this.listaUser){
+        for(let id2 in this.amigos){
+         if(this.listaUser[id]._id === this.amigos[id2]._id) {
+          this.amigos[id2].conectado = 1  
+          this.Refresh(this.amigos)
+          
+          }  
+       };
+      };
+    });
+    this.socket.on('usuario', (data) => 
+    {
+      this.usuarioService.dameAmigo(this.usuario.amigos[data]).subscribe((data2)=>{
+        console.log("el usuario nuevo es: " + data2)
+         })
     });
     this.socket.on('refresh', (data) => 
     {
@@ -68,16 +83,22 @@ export class ChatPage implements OnInit {
            this.amigos.push(data)
             })
       }
-      console.log("mis amigos en for: ", this.amigos)
-   
     });
   });
   
     this.socket.on('messages', (data) => {
       this.listaMensajes = data;
       console.log("*", this.listaMensajes); 
-
+      
     });  
+    
+    this.socket.on('refresh2', (data) => {
+      this.amigos=[];
+      this.amigos = data;
+      console.log("he llegado hasta aqui", this.amigos); 
+      
+    });
+
     this.socket.on('invitacion2', (data, data2 ) => {
       this.nsala = data2;
       console.log("mi numero de sala es: invitado " + this.nsala);
@@ -88,6 +109,10 @@ export class ChatPage implements OnInit {
 
     }); 
     this.Enviarform = this.formBuilder.group({});
+  }
+
+  Refresh(data){
+    this.socket.emit('ramigo', data)
   }
   
 
@@ -133,22 +158,6 @@ export class ChatPage implements OnInit {
     this.navCtrl.navigateRoot('/main/tabs/tab3/chat/privchat');
   }
   
-
-  /*listaAmigos(){
-    this.usuario = this.usuarioService.getUsuario();
-    this.amigos=[];
-    this.usuario.amigos.forEach(function (value){
-      console.log('for each value', value);
-  })
-   /* for(let id in this.usuario.amigos){    
-    this.usuarioService.dameAmigo(this.usuario.amigos[id]).subscribe((data)=>{
-     this.amigos.push(data)
-     console.log("mis amigos en for: ", this.amigos)
-      })
-    }
-    console.log("mis amigos mios: ", this.amigos)
-    this.socket.emit('amigo agregado', this.amigos);
-}*/
 
 async send() {
   this.solicitudAmistad.emailAmigo=this.email;
