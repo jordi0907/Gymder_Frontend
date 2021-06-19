@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot= "start">
+      <ion-back-button defaultHref="/main/tabs/tab3/amigos"></ion-back-button>
+    <ion-title>{{usuario.username}}</ion-title>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+ <ion-card>
+    <ion-row>
+      
+      <ion-avatar slot= "start">
+        <img src="/assets/avatars/{{usuario.avatar}}"/>
+      </ion-avatar>
+      
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h5 class="ion-text-center"> Nombre: {{usuario.name}} </h5>
+        <h5 class="ion-text-center"> UserName: {{usuario.username}} </h5>
+        <h5 class="ion-text-center"> Se unió: {{usuario.createdAt}} </h5>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card>
+</ion-content>

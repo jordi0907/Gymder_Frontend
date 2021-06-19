@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: AmigosPage
+  },  {
+    path: 'amigo-detail',
+    loadChildren: () => import('./amigo-detail/amigo-detail.module').then( m => m.AmigoDetailPageModule)
   }
+
 ];
 
 @NgModule({

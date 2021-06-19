@@ -160,6 +160,10 @@ return this.http.get(environment.url+'/user/actualizado/'+ id)
 
 }
 
+getUser(username: String): Observable<any> {
+  return this.http.get(environment.url+'/user/'+ username)
+}
+
 
 
 
