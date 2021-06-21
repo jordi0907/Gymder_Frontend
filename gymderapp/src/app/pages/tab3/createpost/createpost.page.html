@@ -44,6 +44,7 @@
     <ion-col size="6">
       <ion-button expand="full"
                   shape="round"
+                  (click)="camara()"
                   >
         <ion-icon slot="start" name="camera"></ion-icon>
         Cámara
@@ -52,17 +53,24 @@
     <ion-col size="6">
       <ion-button expand="full"
                   shape="round"
+                  (click)="libreria()"
                   >
         <ion-icon slot="start" name="images"></ion-icon>
         Galería
       </ion-button>
     </ion-col>
+    <ion-col size="6">
+    <ion-item>
+          <input type="file" (change)="onFileChange($event)" />
+
+   </ion-item>
+  </ion-col>
   </ion-row>
 
   <ion-row>
     <ion-col size="3" *ngFor="let image of tempImages">
       <ion-card>
-        <!-- <img [src]="image | imageSanitizer"> -->
+         <img [src]="image | imageSanitizer">
       </ion-card>
     </ion-col>
   </ion-row>

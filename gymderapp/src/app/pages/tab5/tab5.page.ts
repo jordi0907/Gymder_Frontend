@@ -27,33 +27,34 @@ export class Tab5Page implements OnInit {
   palabra1: string;
   palabra2: string;
   Enviarform : FormGroup;
-  listaMensajes : any[] = [];
+  listaFaqs : Faq [] = [];
   listaUser:  Usuario [] = [];
   nsala: Number;
 
   constructor( 
     private usuarioService: UsuarioService)
     
-     
     { 
-    this.usuario= usuarioService.getUsuario();
-    this.faq = usuarioService.getFaq();
-    console.log(this.usuario);
-    console.log(this.faq);
+  
   }
 
   ngOnInit() {
 
+  this.usuarioService.getFaq2().subscribe(data =>{
+    this.listaFaqs = data['pregunta'];
+
+  })
+     
 
   }
 
 
   AddM() {   //envio de mensajes
-    console.log(this.usuario);
     
+
     this.usuario.palabra1 = this.texto;
     this.texto = "";
-    console.log(this.usuario)
+
 
   }
 

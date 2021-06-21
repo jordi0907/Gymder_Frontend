@@ -10,9 +10,14 @@ export class PostComponent implements OnInit {
 
   @Input() post: Post = {};
 
-  img1 = '/assets/gym.jpg'
+  slideSoloOpts={
+    allowSlideNext: false,
+    allowSlidePrev: false
+  }
+
+ /*  img1 = '/assets/gym.jpg'
   img2 = '/assets/pesas.jpeg'
-  img3 = '/assets/perro-1.jpg'
+  img3 = '/assets/perro-1.jpg' */
 
   constructor() { }
 

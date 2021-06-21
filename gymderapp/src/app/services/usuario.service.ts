@@ -8,6 +8,7 @@ import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
 import { Socket } from 'ngx-socket-io';
+import { Faq} from '../interfaces/interfaces';
 
 
 
@@ -119,16 +120,8 @@ export class UsuarioService {
       this.uiService.alertaInformativa('Error en la conexión');
       } )
   }
-  getFaq2(): void{
-    this.http.get<Faq>(environment.url + '/user/faq').subscribe(data=> {
-      this.faq = data;
-      console.log(this.faq)
-      
-
-    }, err =>{
-
-      this.uiService.alertaInformativa('Error en la conexión');
-      } )
+  getFaq2(): Observable<any>{
+    return this.http.get<Faq>(environment.url + '/user/faq');
   }
   getFaq(){
     

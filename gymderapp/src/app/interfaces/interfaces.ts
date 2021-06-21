@@ -16,6 +16,7 @@ export interface Post {
 
 export interface Faq {
   pregunta?: string;
+  respuesta?: string;
 }
 
 export interface Usuario {
