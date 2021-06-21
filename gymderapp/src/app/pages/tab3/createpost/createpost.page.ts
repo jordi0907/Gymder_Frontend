@@ -73,8 +73,6 @@ export class CreatepostPage implements OnInit {
 
   }
 
-<<<<<<< HEAD
-=======
 
   camara(){
 
@@ -177,5 +175,4 @@ export class CreatepostPage implements OnInit {
 
 
 
->>>>>>> b4a5c590a5a9c9ef45ee455ee12ce6927bf278f4
 }
