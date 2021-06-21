@@ -1,0 +1,69 @@
+label p{
+
+margin: 0;
+}
+
+label p:before{
+    content: 'Q: ';
+}
+.tab-group{
+    margin: 3em;
+    max-width: 503mm;
+    width: 60%;
+}
+
+.top-20{
+    margin: 3em;
+    max-width: 503mm;
+    width: 80%;
+}
+
+.tab{
+    position: relative;
+    width: 100%;
+}
+
+.tab input{
+position: absolute;
+left: 0;
+top: 0;
+opacity: 0;
+
+}
+.tab label{
+    background: #ffffff;
+    color: #000000;
+    display: block;
+    font-weight: bolder;
+    line-height: 3;
+    padding-left: .5em;
+    margin-bottom: .5em;
+    border: .5px dashed #1b0bac;
+}
+
+.tab input:focus + label,
+.tab label:hover{
+    background: #2264c7;
+    color: #ffffff;
+    transition: .3s;
+}
+
+.tab-content{
+max-height: 0;
+overflow: hidden;
+transition: all .5s;
+
+}
+
+.tab-content p{
+margin: 1em 0;
+margin-left: 2em;
+
+
+}
+
+.tab input:checked ~ .tab-content{
+
+    max-height: 20em;
+    background: #126aa563;
+}

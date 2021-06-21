@@ -6,12 +6,13 @@
     <ion-title> Gymder chat</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-card>
-  <br/>
-  <input type="text" [(ngModel)]="texto"  placeholder="Tu mensaje..." />
-  <input type="button" (click)="AddM()" value="Enviar!" clearInput/>
-</ion-card>
-<ion-content>
+<div padding>
+  <ion-item>
+  <ion-input type="text" [(ngModel)]="texto"  placeholder="Tu mensaje..." ></ion-input>
+  <ion-button type="submit"  expand="block" fill="outline" (click)="AddM()" > Enviar</ion-button>
+</ion-item>  
+</div>
+<ion-content padding>
   <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
       <ion-toolbar color="primary">
@@ -40,7 +41,7 @@
         <ion-title>Lista Conectados</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content padding>
       <ion-list>
         <ion-card>
           <ion-item *ngFor="let item of listaUser" (click) = "NombreEnviar(item.username)" >
@@ -48,6 +49,7 @@
             </ion-avatar>
              <ion-label>
               {{item.username}}
+              <ion-icon name="ellipse"></ion-icon>
              </ion-label>
         </ion-item>
       </ion-card>
@@ -55,28 +57,39 @@
   </ion-content>
  </ion-menu>
   
-  <ion-menu side="end" type="push" contentId="main">
-    <ion-header>
-      <ion-toolbar color="danger">
-        <ion-title>End Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-card>
-        <ion-item *ngFor="let item of listaUser" [routerLink] ="['/privchat']" >
+ <ion-menu side="end" menuId="custom2" contentId="main" class="my-custom-menu2">
+  <ion-header>
+    <ion-toolbar color="tertiary">
+      <ion-title>Lista amigos</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content padding>
+    <div padding>
+      <ion-item>
+        <ion-input [(ngModel)]="email" type="text" placeholder = "Email" required></ion-input>
+        <ion-button type="submit" expand="block" fill="outline"  (click)= "send()">Añadir</ion-button>
+      </ion-item>
+    </div>
+    <ion-list>
+      <ion-card>
+        <ion-item *ngFor="let item of amigos" (click) = "NombreEnviar(item.username)" >
           <ion-avatar slot="start">
-            <ion-img ></ion-img>
+            <img src= "/assets/avatars/{{item.avatar}}" />
           </ion-avatar>
-          <ion-label>
-          {{item.username}}
-          </ion-label>
-        
-        </ion-item>
-      </ion-card>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+           <ion-label>
+            {{item.username}}
+            <div *ngIf= "item.conectado == 0">
+              <ion-icon name="ellipse" color="danger"></ion-icon>
+            </div>
+            <div *ngIf= "item.conectado == 1">
+              <ion-icon name="ellipse"></ion-icon>
+            </div>
+           </ion-label>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+</ion-menu>
   
   <ion-router-outlet id="main"></ion-router-outlet>
   <ion-card>

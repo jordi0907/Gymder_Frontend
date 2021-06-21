@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from 'src/environments/environment';
-import { Usuario } from '../interfaces/interfaces';
+import { SolicitudAmistad, Usuario } from '../interfaces/interfaces';
 import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
 import { Socket } from 'ngx-socket-io';
+import { Faq} from '../interfaces/interfaces';
+
 
 
 const URL = environment.url;
@@ -17,6 +19,7 @@ const URL = environment.url;
 })
 export class UsuarioService {
   private usuario: Usuario = {};
+  private faq: Faq = {};
 
  token: string = null;
 
@@ -117,6 +120,16 @@ export class UsuarioService {
       this.uiService.alertaInformativa('Error en la conexión');
       } )
   }
+  getFaq2(): Observable<any>{
+    return this.http.get<Faq>(environment.url + '/user/faq');
+  }
+  getFaq(){
+    
+    this.getFaq2()
+    console.log(this.faq)
+    return this.faq
+
+  }
 
   getUsuario(){
     return {...this.usuario}
@@ -138,6 +151,25 @@ export class UsuarioService {
   
 contactUs(mensajeContacto : MensajeContacto): Observable<any>{
   return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
+
+}
+
+addAmigo(solicitudAmistad: SolicitudAmistad): Observable<any> {
+  return this.http.post(environment.url+'/user/addAmigo', solicitudAmistad );
+}  
+ 
+dameAmigo(id: String): Observable<any> {
+  
+  console.log(environment.url+'/user/dameUsuario/'+ id)
+return this.http.get(environment.url+'/user/dameUsuario/'+ id)
+
+
+}
+actualizado(id: String): Observable<any> {
+  
+  console.log(environment.url+'/user/actualizado/'+ id)
+return this.http.get(environment.url+'/user/actualizado/'+ id)
+
 
 }
 

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>amigos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div padding>
+    <ion-item>      
+      <ion-input [(ngModel)]="email" type="text" placeholder = "Email" required></ion-input>
+    </ion-item>
+    <ion-button type="submit" expand="block" fill="outline"  (click)= "send()">Añadir</ion-button>
+  </div>
+  <div padding>
+    <h1>Amigos</h1>
+  </div>
+<ion-list>
+  <ion-item *ngFor = "let item of amigos" >
+    <ion-avatar slot = "start">
+      <img src="/assets/avatars/{{item.avatar}}" />
+    </ion-avatar>
+    <ion-label>
+      {{item.username}}
+    </ion-label>
+  </ion-item>
+</ion-list>
+</ion-content>

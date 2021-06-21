@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Preguntas y respuestas más frecuentes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+  
+    
+    <ion-row class="top-20" >
+      <ion-col size="12" text-center>
+        <ion-label>
+          <h1 >FAQs</h1>
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    
+    <ion-list>
+      <ion-card>
+    <ion-item *ngFor= "let item of listaFaqs">
+      <div class="tab-group">
+      <div class="tab">
+          
+            <ion-text color="primary">
+              <h1>{{item.pregunta}}</h1></ion-text>
+            
+            <ion-text color="dark">
+             <h3> {{item.respuesta}} </h3></ion-text>
+            
+          
+        </div>
+      </div>
+    </ion-item>
+  </ion-card>
+  </ion-list>
+
+</ion-content>
