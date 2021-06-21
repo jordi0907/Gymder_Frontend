@@ -14,12 +14,19 @@ export interface Post {
   created?: string;
 }
 
+export interface Faq {
+  pregunta?: string;
+  respuesta?: string;
+}
+
 export interface Usuario {
   avatar?: string;
   _id?: string;
   name?: string;
   username?: string;
   email?: string;
+  palabra1?: string
+  palabra2?: string
   password?: string;
   role?: number;
   salas?: Sala[];

@@ -8,6 +8,8 @@ import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
 import { Socket } from 'ngx-socket-io';
+import { Faq} from '../interfaces/interfaces';
+
 
 
 const URL = environment.url;
@@ -17,6 +19,7 @@ const URL = environment.url;
 })
 export class UsuarioService {
   private usuario: Usuario = {};
+  private faq: Faq = {};
 
  token: string = null;
 
@@ -116,6 +119,16 @@ export class UsuarioService {
 
       this.uiService.alertaInformativa('Error en la conexión');
       } )
+  }
+  getFaq2(): Observable<any>{
+    return this.http.get<Faq>(environment.url + '/user/faq');
+  }
+  getFaq(){
+    
+    this.getFaq2()
+    console.log(this.faq)
+    return this.faq
+
   }
 
   getUsuario(){

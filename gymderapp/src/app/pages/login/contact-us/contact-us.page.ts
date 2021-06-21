@@ -12,10 +12,6 @@ export class ContactUsPage implements OnInit {
 
  mensajeContacto: MensajeContacto = {};
 
-
-
-
-
   subject= '';
   body= '';
   to= '';
@@ -24,8 +20,6 @@ export class ContactUsPage implements OnInit {
               private usuarioService: UsuarioService,
               public alerta:AlertController
               ) { }
-
-
 
   send(){
 
@@ -47,26 +41,18 @@ export class ContactUsPage implements OnInit {
       console.log(err.status)
 
     })
-     
     
-
   }
 
   else {
     this.alertaError();
   }
 
-
-
-
     this.subject= '';
     this.body= '';
     this.to= '';
-  
    
   }
-
-
 
   ngOnInit() {
   }
@@ -84,8 +70,7 @@ export class ContactUsPage implements OnInit {
    });
 
   await miAlerta.present();
-  
-  
+
  
  }
 
@@ -98,7 +83,5 @@ export class ContactUsPage implements OnInit {
   });
 
  await alertaerror.present();
-
-
 }
 }
