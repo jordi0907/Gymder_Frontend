@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CreatepostPageRoutingModule } from './createpost-routing.module';
 
 import { CreatepostPage } from './createpost.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreatepostPageRoutingModule
+    CreatepostPageRoutingModule,
+    PipesModule
   ],
   declarations: [CreatepostPage]
 })

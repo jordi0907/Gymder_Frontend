@@ -20,8 +20,10 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "@capacitor/core": "3.0.0",
+    "@ionic-native/camera": "^5.33.1",
     "@ionic-native/core": "^5.33.0",
     "@ionic-native/email-composer": "^4.20.0",
+    "@ionic-native/file-transfer": "^5.33.1",
     "@ionic-native/geolocation": "^5.33.0",
     "@ionic/angular": "^5.5.2",
     "@ionic/storage": "^3.0.4",
@@ -49,7 +51,9 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
+    "cordova-plugin-camera": "^5.0.2",
     "cordova-plugin-email-composer": "^0.9.2",
+    "cordova-plugin-file-transfer": "^1.7.1",
     "cordova-plugin-geolocation": "^4.1.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -69,7 +73,9 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-email-composer": {},
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-camera": {},
+      "cordova-plugin-file-transfer": {}
     }
   }
 }
