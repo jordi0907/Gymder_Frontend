@@ -72,18 +72,12 @@
     </div>
     <ion-list>
       <ion-card>
-        <ion-item *ngFor="let item of amigos" (click) = "NombreEnviar(item.username)" >
+        <ion-item *ngFor="let item of amigos">
           <ion-avatar slot="start">
             <img src= "/assets/avatars/{{item.avatar}}" />
           </ion-avatar>
            <ion-label>
             {{item.username}}
-            <div *ngIf= "item.conectado == 0">
-              <ion-icon name="ellipse" color="danger"></ion-icon>
-            </div>
-            <div *ngIf= "item.conectado == 1">
-              <ion-icon name="ellipse"></ion-icon>
-            </div>
            </ion-label>
       </ion-item>
     </ion-card>
@@ -96,9 +90,7 @@
     <ion-card-content>
       <ion-list  >
         <ion-item *ngFor="let item of listaMensajes">    
-          <ion-label>
-          {{item}}
-          </ion-label>
+              {{item}}
         </ion-item>
       </ion-list>
     </ion-card-content>
