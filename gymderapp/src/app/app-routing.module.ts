@@ -16,9 +16,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'login'
-  },  {
-    path: 'tab5',
-    loadChildren: () => import('./pages/tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
+  {
+    path: 'menusuarios',
+    loadChildren: () => import('./pages/menusuarios/menusuarios.module').then( m => m.MenusuariosPageModule)
   },
   {
     path: 'tab5',
