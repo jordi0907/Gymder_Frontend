@@ -13,13 +13,13 @@
     <ion-card-header>
       <ion-card-subtitle>{{reserva.name}}</ion-card-subtitle>
       <ion-card-title>{{reserva.actividad}}</ion-card-title>
-      <input type="button" (click)="irChat(reserva._id)" value="chatear!" />
     </ion-card-header>
     <ion-card-content>
      Horario: {{reserva.horario}} <br>
      Ocupación max: {{reserva.maxInscritos}} <br>
     </ion-card-content>
   </ion-item>
+  <ion-button expand="full" color= "light" (click)="irChat(reserva._id)">Chatear en la sala!!</ion-button>
   <ion-button expand="full" (click)="presentAlertConfirm(reserva._id)">Eliminar reserva</ion-button>
 </ion-list>
 </ion-content>

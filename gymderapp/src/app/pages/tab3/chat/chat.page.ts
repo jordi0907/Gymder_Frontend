@@ -26,6 +26,7 @@ export class ChatPage implements OnInit {
   nsala: Number;
   email = '';
   
+  
   constructor(private socket:Socket, 
     private usuarioService: UsuarioService, 
     private navCtrl: NavController, 

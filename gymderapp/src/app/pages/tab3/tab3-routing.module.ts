@@ -92,9 +92,21 @@ const routes: Routes = [
   },
   {
     path: 'amigos',
-    loadChildren: () => import('./amigos/amigos.module').then( m => m.AmigosPageModule)
+    children: [
+    {
+      path:"",
+      loadChildren: () => import('./amigos/amigos.module').then( m => m.AmigosPageModule)
+    },
+    {
+       path: ":username",
+       loadChildren: () => 
+       import("./amigos/amigo-detail/amigo-detail.module").then(
+         m => m.AmigoDetailPageModule
+       )
+    }
+    ]
   }
-];
+]
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -19,7 +19,7 @@
     <h1>Amigos</h1>
   </div>
 <ion-list>
-  <ion-item *ngFor = "let item of amigos" >
+  <ion-item *ngFor = "let item of amigos" [routerLink]="['/main/tabs/tab3/amigos', item.username]">
     <ion-avatar slot = "start">
       <img src="/assets/avatars/{{item.avatar}}" />
     </ion-avatar>
