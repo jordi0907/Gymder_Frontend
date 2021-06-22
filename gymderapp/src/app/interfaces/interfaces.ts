@@ -30,6 +30,11 @@ export interface Usuario {
   password?: string;
   role?: number;
   salas?: Sala[];
+  fechanac?:Date;
+  escogidopormi2?: any[];
+  image?: string;
+  descripcion?: string;
+  participa?: string;
   amigos? :string[]
   conectado? :number;
 }

@@ -36,6 +36,12 @@ export class PostsService {
     return this.http.post<any>(environment.url + `/postusuario`, post);
   }
 
+  crearPostPerfil(post): Observable<any>{
+
+   return this.http.post<any>(environment.url + `/postusuario/perfil`, post);
+
+ }
+
   subirImagen(img: string){
     const options: FileUploadOptions = {
 
