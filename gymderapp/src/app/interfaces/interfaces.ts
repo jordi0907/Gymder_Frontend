@@ -22,7 +22,12 @@ export interface Usuario {
   email?: string;
   password?: string;
   role?: number;
-  salas?: Sala[]
+  salas?: Sala[];
+  fechanac?:Date;
+  escogidopormi2?: any[];
+  image?: string;
+  descripcion?: string;
+  participa?: string;
 }
 
 export interface Sala {

@@ -5,7 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Usuario } from '../interfaces/interfaces';
 import { MensajeContacto } from '../interfaces/interfaces';
 import { NavController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import {UiServiceService} from '../services/ui-service.service';
 import { Socket } from 'ngx-socket-io';
 
@@ -19,6 +19,7 @@ export class UsuarioService {
   private usuario: Usuario = {};
 
  token: string = null;
+ private dataSubject = new Subject<any>();
 
   constructor(
     private uiService: UiServiceService,
@@ -36,12 +37,12 @@ export class UsuarioService {
     this.storage = storage2;
   }
 
-  
+
 
   login(email: string, password: string) {
     const data = { email, password };
     console.log(URL)
-    
+
     return new Promise((resolve, reject) => {
       this.http.post(`${URL}/auth/signin`, data).subscribe(
         (resp) => {
@@ -135,16 +136,48 @@ export class UsuarioService {
   getUsername(){
     return this.usuario.username;
   }
-  
+
 contactUs(mensajeContacto : MensajeContacto): Observable<any>{
   return  this.http.post(environment.url+'/user/contactUs', mensajeContacto );
 
 }
 
+getgymdertent(): Observable<any>{
+  return this.http.get(environment.url + '/user/all');
+}
+
+getgymdertentunico(id: String): Observable<any>{
+  return this.http.get(environment.url + '/user/'+ id);
+}
+
+deletegymdertent(username: String): Observable<any>{
+  return this.http.delete(environment.url + '/user/'+ username);
+}
+
+updateUserGym(usuarioId, escogido): Observable<any>{
+  return this.http.put(environment.url + '/user/updateuseresc/' + usuarioId, escogido);
+}
+
+
+deleteUserGym(usuarioId, escogido): Observable<any>{
+  console.log("escogido deleteuser", escogido)
+  return this.http.put(environment.url + '/user/deleteuseresc/' + usuarioId, escogido);
+}
 
 
 
-  
+public publish(data: any) {
+  this.dataSubject.next(data);
+}
+
+public getObservable(): Subject<any> {
+  return this.dataSubject;
+}
+
+
+
+
+
 
 
 
